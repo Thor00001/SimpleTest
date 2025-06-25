@@ -9,6 +9,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import EgenTetoTest from "./pages/EgenTetoTest";
 import CompatibilityTest from "./pages/CompatibilityTest";
 import LoveStyleTest from "./pages/LoveStyleTest";
@@ -31,6 +32,7 @@ const App = () => (
               <main className="flex-1">
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
                   <Route path="/personality-test" element={<Index />} />
                   <Route path="/egen-teto-test" element={<EgenTetoTest />} />
                   <Route path="/compatibility-test" element={<CompatibilityTest />} />
