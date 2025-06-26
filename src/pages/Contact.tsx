@@ -1,17 +1,13 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, MessageCircle, Phone, MapPin, Clock, Send } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, MessageSquare, Send } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { useToast } from '@/hooks/use-toast';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contact = () => {
-  const { t, language } = useLanguage();
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,267 +15,185 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    toast({
-      title: language === 'ko' ? "메시지가 전송되었습니다!" : "Message sent successfully!",
-      description: language === 'ko' ? 
-        "빠른 시일 내에 답변드리겠습니다." : 
-        "We'll get back to you as soon as possible."
-    });
-    
-    setFormData({ name: '', email: '', subject: '', message: '' });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // 실제 구현시에는 이메일 발송 로직을 추가해야 합니다
+    alert('문의사항이 접수되었습니다. 빠른 시일 내에 답변드리겠습니다.');
     setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
     });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 dark:from-gray-900 dark:to-gray-800">
       <Helmet>
-        <title>{language === 'ko' ? '문의하기 - SimpleTest.kr' : 'Contact Us - SimpleTest.kr'}</title>
-        <meta name="description" content={language === 'ko' ? 
-          'SimpleTest.kr에 대한 문의사항이나 제안사항이 있으시면 언제든지 연락해주세요. 빠르고 정확한 답변을 드리겠습니다.' :
-          'If you have any questions or suggestions about SimpleTest.kr, please contact us anytime. We will provide quick and accurate responses.'
-        } />
-        <meta name="keywords" content={language === 'ko' ? 
-          '문의하기, 연락처, 고객센터, 제안사항, 피드백' :
-          'contact, inquiry, customer service, suggestions, feedback'
-        } />
-        <meta property="og:title" content={language === 'ko' ? '문의하기 - SimpleTest.kr' : 'Contact Us - SimpleTest.kr'} />
-        <meta property="og:description" content={language === 'ko' ? 
-          'SimpleTest.kr에 대한 문의사항이나 제안사항이 있으시면 언제든지 연락해주세요.' :
-          'If you have any questions or suggestions about SimpleTest.kr, please contact us anytime.'
-        } />
+        <title>문의하기 - SimpleTest.kr</title>
+        <meta name="description" content="SimpleTest.kr에 대한 문의사항이나 제안사항이 있으시면 언제든지 연락해주세요. 빠른 시일 내에 답변드리겠습니다." />
+        <meta name="keywords" content="문의하기, 고객지원, 연락처, 피드백, 제안사항" />
+        <meta property="og:title" content="문의하기 - SimpleTest.kr" />
+        <meta property="og:description" content="SimpleTest.kr에 대한 문의사항이나 제안사항이 있으시면 언제든지 연락해주세요." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://simpletest.kr/contact" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="문의하기 - SimpleTest.kr" />
+        <meta name="twitter:description" content="SimpleTest.kr에 대한 문의사항이나 제안사항이 있으시면 언제든지 연락해주세요." />
       </Helmet>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            {language === 'ko' ? '문의하기' : 'Contact Us'}
+      
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12 pt-8">
+          <h1 className="text-5xl font-bold text-gray-800 mb-4 dark:text-white">
+            📞 문의하기
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {language === 'ko' ? 
-              '궁금한 점이나 제안사항이 있으시면 언제든지 연락해주세요. 빠르고 정확한 답변을 드리겠습니다.' :
-              'If you have any questions or suggestions, please contact us anytime. We will provide quick and accurate responses.'
-            }
+          <p className="text-xl text-gray-600 dark:text-gray-300">
+            궁금한 점이나 제안사항이 있으시면 언제든지 연락해주세요
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
-          {/* Contact Form */}
-          <Card className="shadow-xl border-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <Card className="shadow-xl dark:bg-gray-800 dark:border-gray-700">
             <CardHeader>
-              <CardTitle className="text-2xl text-purple-600 flex items-center">
-                <MessageCircle className="h-6 w-6 mr-3" />
-                {language === 'ko' ? '메시지 보내기' : 'Send Message'}
+              <CardTitle className="flex items-center text-2xl text-gray-800 dark:text-white">
+                <MessageSquare className="mr-3 h-6 w-6" />
+                문의 양식
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'ko' ? '이름' : 'Name'}
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
+                    이름 *
                   </label>
                   <Input
                     type="text"
                     name="name"
                     value={formData.name}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    placeholder="이름을 입력해주세요"
                     required
-                    className="w-full"
-                    placeholder={language === 'ko' ? '이름을 입력해주세요' : 'Enter your name'}
+                    className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'ko' ? '이메일' : 'Email'}
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
+                    이메일 *
                   </label>
                   <Input
                     type="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    placeholder="이메일을 입력해주세요"
                     required
-                    className="w-full"
-                    placeholder={language === 'ko' ? '이메일을 입력해주세요' : 'Enter your email'}
+                    className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'ko' ? '제목' : 'Subject'}
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
+                    제목 *
                   </label>
                   <Input
                     type="text"
                     name="subject"
                     value={formData.subject}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
+                    placeholder="문의 제목을 입력해주세요"
                     required
-                    className="w-full"
-                    placeholder={language === 'ko' ? '문의 제목을 입력해주세요' : 'Enter your subject'}
+                    className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'ko' ? '메시지' : 'Message'}
+                  <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
+                    문의 내용 *
                   </label>
                   <Textarea
                     name="message"
                     value={formData.message}
-                    onChange={handleChange}
-                    required
+                    onChange={handleInputChange}
+                    placeholder="문의하실 내용을 자세히 적어주세요"
                     rows={6}
-                    className="w-full"
-                    placeholder={language === 'ko' ? '문의 내용을 자세히 입력해주세요' : 'Please enter your message in detail'}
+                    required
+                    className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   />
                 </div>
-                
+
                 <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-lg"
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold"
                 >
-                  <Send className="h-5 w-5 mr-2" />
-                  {language === 'ko' ? '메시지 보내기' : 'Send Message'}
+                  <Send className="mr-2 h-5 w-5" />
+                  문의하기
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          {/* Contact Information */}
-          <div className="space-y-8">
-            
-            {/* Contact Methods */}
-            <Card className="shadow-xl border-0">
+          <div className="space-y-6">
+            <Card className="shadow-xl dark:bg-gray-800 dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-2xl text-purple-600">
-                  {language === 'ko' ? '연락 방법' : 'Contact Information'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {language === 'ko' ? '이메일' : 'Email'}
-                    </h3>
-                    <p className="text-gray-600">contact@simpletest.kr</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {language === 'ko' ? '전화' : 'Phone'}
-                    </h3>
-                    <p className="text-gray-600">02-1234-5678</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <MapPin className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {language === 'ko' ? '주소' : 'Address'}
-                    </h3>
-                    <p className="text-gray-600">
-                      {language === 'ko' ? 
-                        '서울특별시 강남구 테헤란로 123' :
-                        '123 Teheran-ro, Gangnam-gu, Seoul'
-                      }
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <Clock className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {language === 'ko' ? '운영 시간' : 'Business Hours'}
-                    </h3>
-                    <p className="text-gray-600">
-                      {language === 'ko' ? 
-                        '월-금 09:00 - 18:00' :
-                        'Mon-Fri 09:00 - 18:00'
-                      }
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* FAQ */}
-            <Card className="shadow-xl border-0">
-              <CardHeader>
-                <CardTitle className="text-2xl text-purple-600">
-                  {language === 'ko' ? '자주 묻는 질문' : 'Frequently Asked Questions'}
+                <CardTitle className="flex items-center text-2xl text-gray-800 dark:text-white">
+                  <Mail className="mr-3 h-6 w-6" />
+                  자주 묻는 질문
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="border-b pb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    {language === 'ko' ? 
-                      '테스트 결과는 얼마나 정확한가요?' :
-                      'How accurate are the test results?'
-                    }
-                  </h4>
-                  <p className="text-gray-600 text-sm">
-                    {language === 'ko' ? 
-                      '심리학 이론과 통계를 바탕으로 한 과학적 접근을 통해 높은 정확도를 제공합니다.' :
-                      'We provide high accuracy through scientific approaches based on psychological theories and statistics.'
-                    }
-                  </p>
-                </div>
-                
-                <div className="border-b pb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    {language === 'ko' ? 
-                      '개인정보는 안전하게 보호되나요?' :
-                      'Is personal information safely protected?'
-                    }
-                  </h4>
-                  <p className="text-gray-600 text-sm">
-                    {language === 'ko' ? 
-                      '네, 모든 개인정보는 암호화되어 안전하게 보호됩니다.' :
-                      'Yes, all personal information is encrypted and safely protected.'
-                    }
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-2 dark:text-white">Q. 테스트 결과가 정확한가요?</h3>
+                  <p className="text-gray-600 text-sm dark:text-gray-300">
+                    저희 테스트는 심리학 이론을 바탕으로 제작되었지만, 재미와 자기 이해를 위한 도구입니다. 
+                    정확한 심리 진단은 전문가와 상담하시기 바랍니다.
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">
-                    {language === 'ko' ? 
-                      '테스트 결과를 다시 확인할 수 있나요?' :
-                      'Can I check my test results again?'
-                    }
-                  </h4>
-                  <p className="text-gray-600 text-sm">
-                    {language === 'ko' ? 
-                      '결과 화면을 스크린샷으로 저장하거나 SNS로 공유하실 수 있습니다.' :
-                      'You can save the results as screenshots or share them on social media.'
-                    }
+                  <h3 className="font-semibold text-gray-800 mb-2 dark:text-white">Q. 개인정보는 안전한가요?</h3>
+                  <p className="text-gray-600 text-sm dark:text-gray-300">
+                    저희는 개인정보를 수집하지 않으며, 모든 테스트는 익명으로 진행됩니다. 
+                    결과도 브라우저에 저장되지 않습니다.
                   </p>
                 </div>
+                
+                <div>
+                  <h3 className="font-semibold text-gray-800 mb-2 dark:text-white">Q. 새로운 테스트는 언제 추가되나요?</h3>
+                  <p className="text-gray-600 text-sm dark:text-gray-300">
+                    정기적으로 새로운 테스트를 추가하고 있습니다. 
+                    원하시는 테스트가 있으시면 문의해주세요!
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-xl dark:bg-gray-800 dark:border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-2xl text-gray-800 dark:text-white">
+                  💡 피드백 및 제안
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 dark:text-gray-300">
+                  더 나은 서비스를 위해 여러분의 의견을 기다립니다:
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <li>• 새로운 테스트 아이디어</li>
+                  <li>• 웹사이트 개선 사항</li>
+                  <li>• 기능 추가 요청</li>
+                  <li>• 버그 신고</li>
+                  <li>• 기타 제안사항</li>
+                </ul>
               </CardContent>
             </Card>
           </div>

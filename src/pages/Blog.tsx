@@ -1,420 +1,522 @@
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Clock, User, ArrowRight, Calendar, Eye } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Calendar, User, Clock } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useState } from 'react';
+import BlogPost from '@/components/BlogPost';
 
 const Blog = () => {
-  const { t, language } = useLanguage();
+  const [selectedPost, setSelectedPost] = useState<any>(null);
 
   const blogPosts = [
     {
       id: 1,
-      title: language === 'ko' ? 'MBTI 16가지 성격유형 완벽 가이드' : 'Complete Guide to 16 MBTI Personality Types',
-      excerpt: language === 'ko' ? 
-        'MBTI의 16가지 성격유형을 자세히 알아보고, 각 유형의 특징과 장단점, 적합한 직업과 연애 스타일까지 완벽하게 정리했습니다.' :
-        'Learn about the 16 MBTI personality types in detail, including characteristics, strengths and weaknesses, suitable careers and relationship styles.',
-      content: language === 'ko' ? 
-        `MBTI(Myers-Briggs Type Indicator)는 세계에서 가장 널리 사용되는 성격 분류 도구 중 하나입니다. 칼 융의 심리학적 유형론을 바탕으로 개발된 이 도구는 사람들의 성격을 16가지 유형으로 분류합니다.
+      title: "MBTI 성격유형별 연애 스타일 완전 분석",
+      excerpt: "16가지 MBTI 유형별 연애 특성과 궁합을 자세히 알아보세요. 각 유형의 사랑 언어와 연애 패턴을 심리학적 관점에서 분석합니다.",
+      content: `MBTI는 칼 융의 심리유형론을 바탕으로 한 성격 분류 도구로, 연애에서도 중요한 지표가 됩니다.
 
-**MBTI의 4가지 차원**
+**외향형(E) vs 내향형(I)의 연애 스타일**
 
-1. **외향(E) vs 내향(I)**: 에너지를 얻는 방식
-   - 외향형: 외부 세계에서 에너지를 얻음
-   - 내향형: 내부 세계에서 에너지를 얻음
+외향형은 활발한 데이트와 많은 사람들과의 만남을 선호하는 반면, 내향형은 조용하고 깊이 있는 시간을 중시합니다. 서로 다른 에너지 충전 방식을 이해하는 것이 중요합니다.
 
-2. **감각(S) vs 직관(N)**: 정보를 받아들이는 방식
-   - 감각형: 구체적이고 실제적인 정보 선호
-   - 직관형: 추상적이고 미래지향적인 정보 선호
+**감각형(S) vs 직관형(N)의 차이점**
 
-3. **사고(T) vs 감정(F)**: 의사결정하는 방식
-   - 사고형: 논리와 분석을 중시
-   - 감정형: 가치와 조화를 중시
+감각형은 현실적이고 구체적인 표현을 좋아하며, 직관형은 상상력과 가능성에 중점을 둡니다. 감각형은 "지금 이 순간"을, 직관형은 "미래의 가능성"을 중시합니다.
 
-4. **판단(J) vs 인식(P)**: 외부세계를 대하는 방식
-   - 판단형: 체계적이고 계획적
-   - 인식형: 유연하고 적응적
+**사고형(T) vs 감정형(F)의 갈등 해결**
 
-**16가지 성격유형 간단 정리**
+사고형은 논리적 분석을 통해 문제를 해결하려 하고, 감정형은 감정과 가치를 우선시합니다. 서로의 접근 방식을 존중하는 것이 건강한 관계의 핵심입니다.
 
-**분석가(NT) 그룹**
-- INTJ: 건축가 - 독립적이고 전략적인 사고가
-- INTP: 논리술사 - 혁신적이고 호기심 많은 사상가
-- ENTJ: 통솔자 - 대담하고 상상력이 풍부한 지도자
-- ENTP: 변론가 - 영리하고 호기심이 많은 사상가
+**판단형(J) vs 인식형(P)의 라이프스타일**
 
-**외교관(NF) 그룹**
-- INFJ: 옹호자 - 조용하고 신비로운 영감을 주는 이상주의자
-- INFP: 중재자 - 시적이고 친절하며 이타적인 성격
-- ENFJ: 선도자 - 카리스마 있고 영감을 주는 지도자
-- ENFP: 활동가 - 열정적이고 창의적인 자유로운 정신
-
-이런 식으로 각 유형은 고유한 특징과 강점을 가지고 있습니다. 자신의 MBTI 유형을 알면 자신을 더 잘 이해하고, 다른 사람들과의 관계에서도 더 효과적으로 소통할 수 있습니다.` :
-        `MBTI (Myers-Briggs Type Indicator) is one of the most widely used personality classification tools in the world. Developed based on Carl Jung's psychological type theory, this tool classifies personalities into 16 types.
-
-**Four Dimensions of MBTI**
-
-1. **Extraversion (E) vs Introversion (I)**: How you gain energy
-   - Extraverts: Gain energy from the external world
-   - Introverts: Gain energy from the internal world
-
-2. **Sensing (S) vs Intuition (N)**: How you take in information
-   - Sensors: Prefer concrete and practical information
-   - Intuitives: Prefer abstract and future-oriented information
-
-3. **Thinking (T) vs Feeling (F)**: How you make decisions
-   - Thinkers: Value logic and analysis
-   - Feelers: Value harmony and personal values
-
-4. **Judging (J) vs Perceiving (P)**: How you deal with the outer world
-   - Judgers: Systematic and planned
-   - Perceivers: Flexible and adaptable
-
-**16 Personality Types Summary**
-
-**Analysts (NT) Group**
-- INTJ: Architect - Independent and strategic thinker
-- INTP: Logician - Innovative and curious thinker
-- ENTJ: Commander - Bold and imaginative leader
-- ENTP: Debater - Smart and curious thinker
-
-**Diplomats (NF) Group**
-- INFJ: Advocate - Quiet and mystical inspiring idealist
-- INFP: Mediator - Poetic, kind and altruistic
-- ENFJ: Protagonist - Charismatic and inspiring leader
-- ENFP: Campaigner - Enthusiastic, creative and free spirit
-
-Each type has unique characteristics and strengths. Knowing your MBTI type helps you understand yourself better and communicate more effectively with others.`,
-      author: language === 'ko' ? '심리학 전문가 김지현' : 'Psychology Expert Kim Jihyun', 
-      date: '2024-06-20',
-      readTime: language === 'ko' ? '8분' : '8 min',
-      views: 15420,
-      category: 'MBTI',
-      tags: ['MBTI', language === 'ko' ? '성격유형' : 'Personality', language === 'ko' ? '심리학' : 'Psychology']
+판단형은 계획적이고 안정적인 관계를 선호하며, 인식형은 자유롭고 유연한 관계를 추구합니다. 서로의 스타일을 이해하고 조율하는 노력이 필요합니다.`,
+      author: "김심리",
+      date: "2024-01-15",
+      readTime: 8,
+      category: "연애 심리",
+      tags: ["MBTI", "연애", "성격분석", "궁합"]
     },
     {
       id: 2,
-      title: language === 'ko' ? '에겐남 vs 테토남, 진짜 차이점은?' : 'Egen vs Teto Male: Real Differences?',
-      excerpt: language === 'ko' ? 
-        'SNS에서 화제가 된 에겐남과 테토남의 실제 차이점과 각각의 매력 포인트를 심리학적 관점에서 분석해보았습니다.' :
-        'We analyzed the real differences between Egen and Teto males from a psychological perspective, including their charm points.',
-      content: language === 'ko' ? 
-        `최근 SNS에서 큰 화제가 된 '에겐남'과 '테토남' 구분법. 단순한 인터넷 밈을 넘어서 실제로 남성의 매력과 성격을 분류하는 새로운 기준이 되고 있습니다.
+      title: "에겐남 테토남 현상의 심리학적 배경",
+      excerpt: "최근 SNS에서 화제가 된 에겐남/테토남 분류의 심리학적 근거와 사회문화적 의미를 분석합니다.",
+      content: `에겐남/테토남 현상은 현대 사회의 남성성에 대한 새로운 관점을 제시합니다.
 
-**에겐남(Egen)의 특징**
+**전통적 남성성의 변화**
 
-에겐남은 '에너지틱하고 젠틀한 남자'의 줄임말로, 다음과 같은 특징을 보입니다:
+과거 남성성은 강인함, 리더십, 책임감으로 정의되었습니다. 하지만 현대에는 감성적이고 배려깊은 남성상도 매력적으로 여겨집니다.
 
-- **카리스마**: 자연스럽게 주목받는 존재감
-- **리더십**: 그룹에서 자연스럽게 리더 역할을 담당
-- **적극성**: 원하는 것을 얻기 위해 적극적으로 행동
-- **독립성**: 혼자서도 잘 해내는 능력
-- **결단력**: 빠른 의사결정과 실행력
+**에겐남의 특징과 매력**
 
-**테토남(Teto)의 특징**
+- 카리스마와 리더십
+- 강인한 정신력
+- 책임감과 신뢰성
+- 결정력과 추진력
 
-테토남은 '텐더하고 토탈케어하는 남자'의 줄임말로, 다음과 같은 특징을 보입니다:
+에겐남은 전통적 남성성을 현대적으로 재해석한 유형입니다.
 
-- **다정함**: 상대방을 세심하게 배려하는 성격
-- **순수함**: 때묻지 않은 순수한 마음
-- **안정감**: 함께 있으면 편안하고 안정적인 느낌
-- **충성심**: 한 사람을 오래 좋아하는 일관성
-- **감수성**: 예술이나 감정적인 부분에 민감함
+**테토남의 특징과 매력**
 
-**심리학적 분석**
+- 순수하고 다정한 성격
+- 높은 공감 능력
+- 유머감각과 친근함
+- 감정 표현의 자유로움
 
-이 두 유형은 심리학의 '애착 이론'과 '성격 5요인 모델'과 연관지어 볼 수 있습니다:
+테토남은 새로운 남성성의 대표적 유형으로, 감정적 지능이 높은 특징을 보입니다.
 
-- 에겐남은 높은 외향성과 개방성을 보이는 반면
-- 테토남은 높은 친화성과 성실성을 보입니다
+**사회적 의미와 시사점**
 
-결론적으로, 에겐남과 테토남은 각각 다른 매력을 가진 유형으로, 어느 쪽이 더 좋다고 할 수는 없습니다. 중요한 것은 자신의 성향을 이해하고 그에 맞는 매력을 발산하는 것입니다.` :
-        `The recent SNS trend of categorizing males into 'Egen' and 'Teto' types has become more than just an internet meme - it's a new standard for classifying male charm and personality.
-
-**Characteristics of Egen Males**
-
-Egen males are 'Energetic and Gentle' men with these traits:
-
-- **Charisma**: Natural commanding presence
-- **Leadership**: Naturally takes leader roles in groups
-- **Proactivity**: Acts decisively to achieve goals
-- **Independence**: Capable of handling things alone
-- **Decisiveness**: Quick decision-making and execution
-
-**Characteristics of Teto Males**
-
-Teto males are 'Tender and Total-care' men with these traits:
-
-- **Kindness**: Thoughtful consideration for others
-- **Innocence**: Pure and untainted heart
-- **Stability**: Provides comfort and stability
-- **Loyalty**: Consistent in long-term relationships
-- **Sensitivity**: Sensitive to art and emotions
-
-**Psychological Analysis**
-
-These two types can be related to psychology's 'Attachment Theory' and 'Big Five Personality Model':
-
-- Egen males show high extraversion and openness
-- Teto males show high agreeableness and conscientiousness
-
-In conclusion, both Egen and Teto males have different charms, and neither is superior. The key is understanding your own tendencies and expressing your unique charm accordingly.`,
-      author: language === 'ko' ? '연애 심리 전문가 박수진' : 'Relationship Psychology Expert Park Sujin',
-      date: '2024-06-18',
-      readTime: language === 'ko' ? '6분' : '6 min',
-      views: 23150,
-      category: language === 'ko' ? '성격분석' : 'Personality',
-      tags: [language === 'ko' ? '에겐남' : 'Egen', language === 'ko' ? '테토남' : 'Teto', language === 'ko' ? '매력' : 'Charm']
+이러한 분류는 성별 고정관념을 깨고 다양한 매력을 인정하는 사회적 변화를 반영합니다.`,
+      author: "박사회",
+      date: "2024-01-10",
+      readTime: 6,
+      category: "사회 트렌드",
+      tags: ["에겐남", "테토남", "남성성", "사회심리"]
     },
     {
       id: 3,
-      title: language === 'ko' ? '연애할 때 나타나는 성격 변화의 심리학' : 'Psychology of Personality Changes in Relationships',
-      excerpt: language === 'ko' ? 
-        '연애를 시작하면 왜 성격이 달라질까요? 사랑에 빠졌을 때 나타나는 심리적 변화와 그 이유를 과학적으로 분석해보았습니다.' :
-        'Why does personality change when you start dating? We scientifically analyze the psychological changes that occur when falling in love.',
-      content: language === 'ko' ? 
-        `"연애하면 사람이 달라진다"는 말, 정말 과학적인 근거가 있을까요? 심리학 연구에 따르면, 사랑에 빠지면 실제로 뇌의 화학적 변화가 일어납니다.
+      title: "성공적인 연애를 위한 5가지 심리학 팁",
+      excerpt: "심리학 연구를 바탕으로 한 건강하고 지속가능한 연애 관계를 만드는 실용적인 조언들을 소개합니다.",
+      content: `심리학 연구에 기반한 성공적인 연애의 비밀을 알아보겠습니다.
 
-**사랑에 빠졌을 때의 뇌 변화**
+**1. 애착 유형 이해하기**
 
-1. **도파민 증가**: 보상 시스템 활성화로 행복감 증가
-2. **세로토닌 감소**: 강박적 사고 패턴 증가
-3. **옥시토신 증가**: 애착과 유대감 강화
-4. **코르티솔 변화**: 스트레스 반응의 변화
+존 볼비의 애착 이론에 따르면, 우리의 연애 패턴은 어린 시절 경험에 영향을 받습니다.
 
-**연애 중 나타나는 성격 변화**
+- 안정형: 건강한 관계 형성
+- 회피형: 친밀감에 대한 두려움
+- 불안형: 관계에 대한 과도한 걱정
+- 혼란형: 일관성 없는 연애 패턴
 
-**긍정적 변화:**
-- 더 관대하고 이해심이 깊어짐
-- 자신감 향상
-- 사회적 활동 증가
-- 미래에 대한 긍정적 전망
+**2. 효과적인 소통 방법**
 
-**주의해야 할 변화:**
-- 과도한 의존성
-- 자아 정체성의 혼란
-- 기존 인간관계 소홀
-- 현실 감각 저하
+- 'I' 메시지 사용하기
+- 적극적 경청 실천하기
+- 비폭력적 대화법 적용하기
+- 감정 표현의 중요성
 
-**건강한 연애를 위한 조언**
+**3. 갈등 해결 전략**
 
-1. **자아 정체성 유지**: 연애 중에도 자신만의 시간과 공간 확보
-2. **균형잡힌 관계**: 상대방과의 관계와 다른 인간관계의 균형
-3. **현실적 기대**: 완벽한 사랑은 없다는 현실 인식
-4. **성장 지향**: 서로를 더 나은 사람으로 만드는 관계 추구
+고트만 박사의 연구에 따르면, 성공적인 커플들은 특별한 갈등 해결 패턴을 보입니다.
 
-연애는 분명히 우리를 변화시킵니다. 하지만 그 변화가 긍정적인 성장이 되도록 하는 것이 중요합니다.` :
-        `Is there scientific evidence for the saying "people change when they're in love"? According to psychological research, falling in love actually causes chemical changes in the brain.
+- 비판보다는 구체적 요청
+- 방어적 태도 피하기
+- 경멸적 표현 금지
+- 담쌓기 현상 극복
 
-**Brain Changes When Falling in Love**
+**4. 친밀감 증진 방법**
 
-1. **Increased Dopamine**: Activation of reward system increases happiness
-2. **Decreased Serotonin**: Increased obsessive thought patterns
-3. **Increased Oxytocin**: Strengthened attachment and bonding
-4. **Cortisol Changes**: Altered stress response
+- 일상적 관심 표현하기
+- 공통 관심사 만들기
+- 신체적 접촉의 중요성
+- 감정적 지지 제공하기
 
-**Personality Changes During Relationships**
+**5. 개인 성장과 관계 발전**
 
-**Positive Changes:**
-- Become more tolerant and understanding
-- Increased self-confidence
-- Increased social activities
-- Positive outlook on the future
+건강한 관계는 개인의 성장을 바탕으로 합니다. 서로의 꿈과 목표를 지지하며 함께 발전해나가는 것이 중요합니다.`,
+      author: "이연애",
+      date: "2024-01-08",
+      readTime: 10,
+      category: "연애 가이드",
+      tags: ["연애팁", "관계심리", "소통", "갈등해결"]
+    },
+    {
+      id: 4,
+      title: "현대인의 스트레스와 성격변화 패턴",
+      excerpt: "디지털 시대의 스트레스가 우리의 성격에 미치는 영향과 대처 방안을 심층 분석합니다.",
+      content: `현대 사회의 스트레스는 우리의 성격 형성에 큰 영향을 미칩니다.
 
-**Changes to Be Careful Of:**
-- Excessive dependency
-- Confusion of self-identity
-- Neglect of existing relationships
-- Decreased sense of reality
+**디지털 스트레스의 특징**
 
-**Advice for Healthy Relationships**
+- SNS 비교 심리
+- 정보 과부하
+- 즉시성에 대한 압박
+- 온라인 관계의 피상성
 
-1. **Maintain Self-Identity**: Secure personal time and space even while dating
-2. **Balanced Relationships**: Balance between romantic relationship and other relationships
-3. **Realistic Expectations**: Recognize that perfect love doesn't exist
-4. **Growth-Oriented**: Pursue relationships that make each other better people
+**스트레스가 성격에 미치는 영향**
 
-Love certainly changes us. But it's important to ensure that change becomes positive growth.`,
-      author: language === 'ko' ? '사랑의 과학 연구소 이민수' : 'Love Science Institute Lee Minsu',
-      date: '2024-06-15',
-      readTime: language === 'ko' ? '7분' : '7 min',
-      views: 18900,
-      category: language === 'ko' ? '연애심리' : 'Love Psychology',
-      tags: [language === 'ko' ? '연애' : 'Dating', language === 'ko' ? '심리변화' : 'Psychology', language === 'ko' ? '뇌과학' : 'Neuroscience']
+**1. 외향성의 변화**
+코로나19와 디지털 소통 증가로 많은 사람들이 내향적 성향을 보이게 되었습니다.
+
+**2. 신경성의 증가**
+불확실한 미래와 경쟁 사회는 불안감과 예민함을 증가시킵니다.
+
+**3. 개방성의 감소**
+안전을 추구하려는 경향이 새로운 경험에 대한 개방성을 줄입니다.
+
+**건강한 성격 유지 방법**
+
+**마음챙김 실천**
+- 명상과 요가
+- 자연과의 교감
+- 디지털 디톡스
+
+**사회적 연결 강화**
+- 오프라인 만남 늘리기
+- 깊이 있는 대화 나누기
+- 공동체 활동 참여
+
+**자기계발과 성장**
+- 새로운 취미 개발
+- 학습과 도전
+- 목표 설정과 달성
+
+**스트레스 관리의 중요성**
+
+적절한 스트레스 관리는 성격의 긍정적 변화를 도모하고 전반적인 삶의 질을 향상시킵니다.`,
+      author: "정스트레스",
+      date: "2024-01-05",
+      readTime: 7,
+      category: "현대 심리",
+      tags: ["스트레스", "성격변화", "디지털", "현대사회"]
+    },
+    {
+      id: 5,
+      title: "빅파이브 성격이론으로 본 직업 적성",
+      excerpt: "빅파이브 성격 모델을 활용하여 자신에게 맞는 직업과 진로를 찾는 방법을 알아봅시다.",
+      content: `빅파이브 성격 이론은 직업 선택과 진로 설계에 중요한 지침을 제공합니다.
+
+**빅파이브 성격 요인**
+
+**1. 개방성 (Openness)**
+- 높음: 예술가, 연구원, 컨설턴트
+- 낮음: 회계사, 은행원, 관리직
+
+**2. 성실성 (Conscientiousness)**
+- 높음: 의사, 변호사, 관리자
+- 낮음: 예술가, 기업가, 언론인
+
+**3. 외향성 (Extraversion)**
+- 높음: 영업직, 교사, 정치인
+- 낮음: 프로그래머, 연구원, 작가
+
+**4. 친화성 (Agreeableness)**
+- 높음: 상담사, 간호사, 사회복지사
+- 낮음: 경영자, 판사, 군인
+
+**5. 신경성 (Neuroticism)**
+- 높음: 창작 분야, 상담 분야
+- 낮음: 응급의학, 조종사, 소방관
+
+**성격과 직업 만족도**
+
+연구에 따르면 자신의 성격과 맞는 직업을 선택한 사람들이 높은 직업 만족도와 성과를 보입니다.
+
+**진로 선택 시 고려사항**
+
+- 개인의 가치관과 목표
+- 성격적 강점과 약점
+- 환경적 요인과 기회
+- 장기적 비전과 계획
+
+**성격 개발과 적응**
+
+성격은 어느 정도 변화 가능하므로, 원하는 직업에 맞게 자신을 발전시키는 노력도 중요합니다.`,
+      author: "최진로",
+      date: "2024-01-03",
+      readTime: 9,
+      category: "진로 상담",
+      tags: ["빅파이브", "직업적성", "진로선택", "성격이론"]
+    },
+    {
+      id: 6,
+      title: "Z세대의 연애관과 가치관 변화",
+      excerpt: "MZ세대의 연애 문화와 가치관 변화를 분석하고, 이들의 특징적인 성격 특성을 살펴봅니다.",
+      content: `Z세대(1997-2012년생)는 이전 세대와 다른 독특한 연애관과 가치관을 보입니다.
+
+**Z세대 연애의 특징**
+
+**1. 개인주의적 성향**
+- 자아실현을 우선시
+- 독립적인 관계 추구
+- 개인의 성장과 발전 중시
+
+**2. 디지털 네이티브**
+- SNS를 통한 만남과 소통
+- 온라인 데이팅 앱 활용
+- 디지털 표현의 익숙함
+
+**3. 다양성과 포용성**
+- 성별, 성향의 다양성 인정
+- 전통적 역할 구분 거부
+- 열린 관계 형태 수용
+
+**연애에서 중시하는 가치**
+
+**솔직한 소통**
+Z세대는 감정과 생각의 솔직한 표현을 중요하게 여깁니다.
+
+**상호 존중**
+서로의 개성과 독립성을 인정하고 존중하는 관계를 추구합니다.
+
+**공동 성장**
+함께 성장하고 발전할 수 있는 파트너를 원합니다.
+
+**유연한 관계**
+전통적인 틀에 얽매이지 않는 자유로운 관계를 선호합니다.
+
+**기성세대와의 차이점**
+
+- 결혼에 대한 인식 변화
+- 경제적 안정보다 개인의 행복 우선
+- 장기적 계획보다 현재의 만족 추구
+
+**Z세대 연애의 도전과제**
+
+- 깊이 있는 관계 형성의 어려움
+- 즉석 만족 문화의 부작용
+- 현실과 이상의 괴리
+
+**건강한 관계를 위한 조언**
+
+Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, 인내심 있는 관계 구축이 중요합니다.`,
+      author: "김젠지",
+      date: "2024-01-01",
+      readTime: 8,
+      category: "세대 문화",
+      tags: ["Z세대", "MZ세대", "연애문화", "가치관변화"]
+    },
+    {
+      id: 7,
+      title: "심리학으로 본 첫인상의 과학",
+      excerpt: "첫 만남에서 형성되는 인상이 관계에 미치는 영향과 긍정적인 첫인상을 만드는 심리학적 방법들을 소개합니다.",
+      content: `첫인상은 7초 안에 결정되며, 이후 관계에 지속적인 영향을 미칩니다.
+
+**첫인상 형성의 메커니즘**
+
+**1. 헤일로 효과 (Halo Effect)**
+한 가지 긍정적 특성이 전체적인 평가에 영향을 미치는 현상입니다.
+
+**2. 확증 편향 (Confirmation Bias)**
+첫인상이 형성되면 이를 뒷받침하는 정보만 선택적으로 받아들입니다.
+
+**3. 기초 귀인 오류**
+상황적 요인보다 성격적 요인으로 행동을 해석하려는 경향입니다.
+
+**첫인상에 영향을 미치는 요소**
+
+**외모와 복장**
+- 깔끔한 외모와 적절한 복장
+- 바디랭귀지와 자세
+- 미소와 눈맞춤
+
+**음성과 말투**
+- 목소리의 톤과 속도
+- 발음과 억양
+- 대화의 내용과 방식
+
+**행동과 태도**
+- 예의와 매너
+- 자신감과 진정성
+- 상대방에 대한 관심
+
+**긍정적 첫인상 만들기**
+
+**1. SOLER 기법**
+- S(Square): 어깨를 곧게 펴기
+- O(Open): 열린 자세 취하기
+- L(Lean): 상대방 쪽으로 약간 기울이기
+- E(Eye contact): 적절한 눈맞춤
+- R(Relax): 편안한 분위기 만들기
+
+**2. 미러링 효과**
+상대방의 행동이나 말투를 자연스럽게 따라하여 친밀감을 높입니다.
+
+**3. 공감적 경청**
+상대방의 말에 진심으로 관심을 보이고 적절한 반응을 합니다.
+
+**첫인상의 한계와 극복**
+
+첫인상이 항상 정확하지는 않으므로, 시간을 두고 상대방을 더 깊이 알아가는 것이 중요합니다.
+
+**관계 발전을 위한 팁**
+
+- 선입견 없이 상대방 이해하기
+- 지속적인 관심과 소통
+- 진정성 있는 태도 유지`,
+      author: "박첫인상",
+      date: "2023-12-28",
+      readTime: 6,
+      category: "인간관계",
+      tags: ["첫인상", "인상관리", "인간관계", "사회심리"]
+    },
+    {
+      id: 8,
+      title: "감정지능(EQ)을 높이는 실전 가이드",
+      excerpt: "감정지능의 중요성과 일상생활에서 EQ를 향상시킬 수 있는 구체적인 방법들을 제시합니다.",
+      content: `감정지능(EQ)은 성공과 행복의 핵심 요소로 주목받고 있습니다.
+
+**감정지능의 4가지 구성요소**
+
+**1. 자기인식 (Self-Awareness)**
+- 자신의 감정 상태 파악
+- 감정의 원인 이해
+- 장점과 단점 인식
+
+**2. 자기관리 (Self-Management)**
+- 감정 조절 능력
+- 스트레스 관리
+- 충동 억제력
+
+**3. 사회적 인식 (Social Awareness)**
+- 타인의 감정 이해
+- 공감 능력
+- 비언어적 신호 해석
+
+**4. 관계관리 (Relationship Management)**
+- 효과적인 소통
+- 갈등 해결
+- 협력과 리더십
+
+**EQ 향상을 위한 실전 방법**
+
+**자기인식 높이기**
+- 감정 일기 쓰기
+- 명상과 자기 성찰
+- 피드백 적극 수용하기
+
+**감정 조절 연습**
+- 심호흡과 이완 기법
+- 인지적 재평가
+- 긍정적 자기 대화
+
+**공감 능력 개발**
+- 적극적 경청 실천
+- 상대방 입장에서 생각하기
+- 비판단적 태도 유지
+
+**소통 기술 향상**
+- 'I' 메시지 사용
+- 감정 표현 연습
+- 건설적 피드백 제공
+
+**EQ가 높은 사람의 특징**
+
+- 스트레스 상황에서도 침착함
+- 타인과의 관계가 원만함
+- 변화에 유연하게 적응
+- 자신감과 낙관성 보유
+
+**일상생활에서의 적용**
+
+**직장에서**
+- 동료와의 협력 강화
+- 고객 서비스 개선
+- 리더십 발휘
+
+**연애와 결혼에서**
+- 파트너와의 소통 개선
+- 갈등 상황 해결
+- 친밀감 증진
+
+**자녀교육에서**
+- 감정 코칭
+- 공감적 소통
+- 건강한 관계 모델링
+
+감정지능은 타고나는 것이 아니라 후천적으로 개발 가능한 능력입니다.`,
+      author: "한감정",
+      date: "2023-12-25",
+      readTime: 9,
+      category: "감정 관리",
+      tags: ["감정지능", "EQ", "감정관리", "인간관계"]
     }
   ];
 
-  const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
-
-  const handlePostClick = (post: typeof blogPosts[0]) => {
-    setSelectedPost(post);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBackToList = () => {
-    setSelectedPost(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  if (selectedPost) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 dark:from-gray-900 dark:to-gray-800">
+        <BlogPost post={selectedPost} onBack={() => setSelectedPost(null)} />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 dark:from-gray-900 dark:to-gray-800">
       <Helmet>
-        <title>{language === 'ko' ? '심리학 블로그 - SimpleTest.kr' : 'Psychology Blog - SimpleTest.kr'}</title>
-        <meta name="description" content={language === 'ko' ? 
-          '심리학 전문가들이 들려주는 흥미로운 심리학 이야기. MBTI, 연애심리, 성격분석 등 다양한 주제의 심리학 콘텐츠를 만나보세요.' :
-          'Interesting psychology stories from psychology experts. Discover various psychology content including MBTI, relationship psychology, and personality analysis.'
-        } />
-        <meta name="keywords" content={language === 'ko' ? 
-          '심리학 블로그, MBTI, 연애심리, 성격분석, 심리테스트, 에겐남, 테토남' :
-          'psychology blog, MBTI, relationship psychology, personality analysis, psychology test, egen, teto'
-        } />
-        <meta property="og:title" content={language === 'ko' ? '심리학 블로그 - SimpleTest.kr' : 'Psychology Blog - SimpleTest.kr'} />
-        <meta property="og:description" content={language === 'ko' ? 
-          '심리학 전문가들이 들려주는 흥미로운 심리학 이야기. MBTI, 연애심리, 성격분석 등 다양한 주제의 심리학 콘텐츠를 만나보세요.' :
-          'Interesting psychology stories from psychology experts. Discover various psychology content including MBTI, relationship psychology, and personality analysis.'
-        } />
+        <title>심리테스트 블로그 - SimpleTest.kr</title>
+        <meta name="description" content="성격분석, 연애심리, MBTI, 심리학 이론 등 다양한 심리테스트와 관련된 전문 콘텐츠를 제공하는 블로그입니다." />
+        <meta name="keywords" content="심리테스트 블로그, 성격분석, 연애심리, MBTI, 심리학, 성격유형, 인간관계" />
+        <meta property="og:title" content="심리테스트 블로그 - 성격과 심리에 대한 모든 것" />
+        <meta property="og:description" content="성격분석, 연애심리, MBTI 등 심리학 전문 콘텐츠를 만나보세요. 전문가가 작성한 양질의 심리학 정보를 제공합니다." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://simpletest.kr/blog" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="심리테스트 블로그 - 성격과 심리에 대한 모든 것" />
+        <meta name="twitter:description" content="성격분석, 연애심리, MBTI 등 심리학 전문 콘텐츠를 만나보세요." />
       </Helmet>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {!selectedPost ? (
-          <>
-            {/* Header */}
-            <div className="text-center mb-16">
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
-                {t('blog.title')}
-              </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {t('blog.subtitle')}
-              </p>
-            </div>
+      
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12 pt-8">
+          <h1 className="text-5xl font-bold text-gray-800 mb-4 dark:text-white">
+            📚 심리테스트 블로그
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300">
+            성격분석과 심리학에 대한 전문적이고 유용한 정보를 제공합니다
+          </p>
+        </div>
 
-            {/* Blog Posts Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {blogPosts.map((post) => (
-                <Card 
-                  key={post.id} 
-                  className="shadow-lg border-0 hover:shadow-xl transition-all duration-300 cursor-pointer hover-scale overflow-hidden"
-                  onClick={() => handlePostClick(post)}
-                >
-                  <div className="h-48 bg-gradient-to-br from-purple-400 to-pink-400 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <Badge className="mb-3 bg-white/20 text-white border-white/30">
-                        {post.category}
-                      </Badge>
-                      <h3 className="text-white font-bold text-lg leading-tight line-clamp-2">
-                        {post.title}
-                      </h3>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <User className="h-4 w-4" />
-                          <span>{post.author}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="h-4 w-4" />
-                          <span>{post.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 text-sm text-gray-500">
-                        <div className="flex items-center space-x-1">
-                          <Clock className="h-4 w-4" />
-                          <span>{post.readTime}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Eye className="h-4 w-4" />
-                          <span>{post.views.toLocaleString()}</span>
-                        </div>
-                      </div>
-                      <ArrowRight className="h-5 w-5 text-purple-600 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {post.tags.map((tag, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </>
-        ) : (
-          /* Selected Post View */
-          <div className="max-w-4xl mx-auto">
-            <button
-              onClick={handleBackToList}
-              className="mb-8 inline-flex items-center text-purple-600 hover:text-purple-800 transition-colors"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post) => (
+            <Card 
+              key={post.id} 
+              className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
+              onClick={() => setSelectedPost(post)}
             >
-              <ArrowRight className="h-5 w-5 mr-2 rotate-180" />
-              {language === 'ko' ? '목록으로 돌아가기' : 'Back to List'}
-            </button>
-            
-            <Card className="shadow-xl border-0 overflow-hidden">
-              <div className="h-64 bg-gradient-to-br from-purple-400 to-pink-400 relative">
-                <div className="absolute inset-0 bg-black/30" />
-                <div className="absolute bottom-8 left-8 right-8 text-white">
-                  <Badge className="mb-4 bg-white/20 text-white border-white/30">
-                    {selectedPost.category}
+              <CardHeader>
+                <div className="flex items-center justify-between mb-2">
+                  <Badge variant="outline" className="text-xs dark:border-gray-600">
+                    {post.category}
                   </Badge>
-                  <h1 className="text-4xl font-bold mb-4">{selectedPost.title}</h1>
-                  <div className="flex items-center space-x-6 text-white/90">
-                    <div className="flex items-center space-x-2">
-                      <User className="h-5 w-5" />
-                      <span>{selectedPost.author}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-5 w-5" />
-                      <span>{selectedPost.date}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-5 w-5" />
-                      <span>{selectedPost.readTime}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Eye className="h-5 w-5" />
-                      <span>{selectedPost.views.toLocaleString()}</span>
-                    </div>
+                  <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                    <Clock className="h-3 w-3 mr-1" />
+                    {post.readTime}분
                   </div>
                 </div>
-              </div>
-              
-              <CardContent className="p-8">
-                <div className="prose prose-lg max-w-none">
-                  <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {selectedPost.content}
-                  </div>
-                </div>
+                <CardTitle className="text-xl leading-tight hover:text-blue-600 transition-colors dark:text-white dark:hover:text-blue-400">
+                  {post.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 dark:text-gray-300">
+                  {post.excerpt}
+                </p>
                 
-                <div className="mt-8 pt-8 border-t">
-                  <div className="flex flex-wrap gap-2">
-                    {selectedPost.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary">
-                        {tag}
+                <div className="space-y-4">
+                  <div className="flex flex-wrap gap-1">
+                    {post.tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary" className="text-xs dark:bg-gray-700 dark:text-gray-300">
+                        #{tag}
                       </Badge>
                     ))}
                   </div>
+                  
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center">
+                      <User className="h-3 w-3 mr-1" />
+                      {post.author}
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar className="h-3 w-3 mr-1" />
+                      {post.date}
+                    </div>
+                  </div>
                 </div>
+
+                <Button className="w-full mt-4" variant="outline">
+                  전체 글 읽기
+                </Button>
               </CardContent>
             </Card>
-          </div>
-        )}
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <p className="text-gray-600 dark:text-gray-300">
+            더 많은 심리학 콘텐츠가 곧 업데이트됩니다!
+          </p>
+        </div>
       </div>
     </div>
   );
