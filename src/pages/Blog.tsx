@@ -4,17 +4,26 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, User, Clock } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useLanguage } from '@/contexts/LanguageContext';
 import BlogPost from '@/components/BlogPost';
 
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<any>(null);
+  const { language } = useLanguage();
 
   const blogPosts = [
     {
       id: 1,
-      title: "MBTI 성격유형별 연애 스타일 완전 분석",
-      excerpt: "16가지 MBTI 유형별 연애 특성과 궁합을 자세히 알아보세요. 각 유형의 사랑 언어와 연애 패턴을 심리학적 관점에서 분석합니다.",
-      content: `MBTI는 칼 융의 심리유형론을 바탕으로 한 성격 분류 도구로, 연애에서도 중요한 지표가 됩니다.
+      title: {
+        ko: "MBTI 성격유형별 연애 스타일 완전 분석",
+        en: "Complete Analysis of MBTI Personality Types in Love"
+      },
+      excerpt: {
+        ko: "16가지 MBTI 유형별 연애 특성과 궁합을 자세히 알아보세요. 각 유형의 사랑 언어와 연애 패턴을 심리학적 관점에서 분석합니다.",
+        en: "Explore the romantic characteristics and compatibility of 16 MBTI types. Analyze each type's love language and dating patterns from a psychological perspective."
+      },
+      content: {
+        ko: `MBTI는 칼 융의 심리유형론을 바탕으로 한 성격 분류 도구로, 연애에서도 중요한 지표가 됩니다.
 
 **외향형(E) vs 내향형(I)의 연애 스타일**
 
@@ -31,17 +40,51 @@ const Blog = () => {
 **판단형(J) vs 인식형(P)의 라이프스타일**
 
 판단형은 계획적이고 안정적인 관계를 선호하며, 인식형은 자유롭고 유연한 관계를 추구합니다. 서로의 스타일을 이해하고 조율하는 노력이 필요합니다.`,
-      author: "김심리",
+        en: `MBTI is a personality classification tool based on Carl Jung's psychological type theory, and it's also an important indicator in romantic relationships.
+
+**Extroversion(E) vs Introversion(I) Dating Styles**
+
+Extroverts prefer active dates and meeting many people, while introverts value quiet and deep quality time. Understanding each other's different energy recharging methods is important.
+
+**Sensing(S) vs Intuition(N) Differences**
+
+Sensing types prefer realistic and concrete expressions, while intuitive types focus on imagination and possibilities. Sensing types value "this moment now," while intuitive types value "future possibilities."
+
+**Thinking(T) vs Feeling(F) Conflict Resolution**
+
+Thinking types try to solve problems through logical analysis, while feeling types prioritize emotions and values. Respecting each other's approaches is key to a healthy relationship.
+
+**Judging(J) vs Perceiving(P) Lifestyle**
+
+Judging types prefer planned and stable relationships, while perceiving types pursue free and flexible relationships. Efforts to understand and coordinate each other's styles are necessary.`
+      },
+      author: {
+        ko: "김심리",
+        en: "Dr. Kim"
+      },
       date: "2024-01-15",
       readTime: 8,
-      category: "연애 심리",
-      tags: ["MBTI", "연애", "성격분석", "궁합"]
+      category: {
+        ko: "연애 심리",
+        en: "Love Psychology"
+      },
+      tags: {
+        ko: ["MBTI", "연애", "성격분석", "궁합"],
+        en: ["MBTI", "Romance", "Personality Analysis", "Compatibility"]
+      }
     },
     {
       id: 2,
-      title: "에겐남 테토남 현상의 심리학적 배경",
-      excerpt: "최근 SNS에서 화제가 된 에겐남/테토남 분류의 심리학적 근거와 사회문화적 의미를 분석합니다.",
-      content: `에겐남/테토남 현상은 현대 사회의 남성성에 대한 새로운 관점을 제시합니다.
+      title: {
+        ko: "에겐남 테토남 현상의 심리학적 배경",
+        en: "Psychological Background of Alpha/Soft Male Phenomenon"
+      },
+      excerpt: {
+        ko: "최근 SNS에서 화제가 된 에겐남/테토남 분류의 심리학적 근거와 사회문화적 의미를 분석합니다.",
+        en: "Analyze the psychological basis and sociocultural meaning of the Alpha/Soft male classification that has become a topic on social media."
+      },
+      content: {
+        ko: `에겐남/테토남 현상은 현대 사회의 남성성에 대한 새로운 관점을 제시합니다.
 
 **전통적 남성성의 변화**
 
@@ -68,17 +111,61 @@ const Blog = () => {
 **사회적 의미와 시사점**
 
 이러한 분류는 성별 고정관념을 깨고 다양한 매력을 인정하는 사회적 변화를 반영합니다.`,
-      author: "박사회",
+        en: `The Alpha/Soft male phenomenon presents a new perspective on masculinity in modern society.
+
+**Changes in Traditional Masculinity**
+
+In the past, masculinity was defined by strength, leadership, and responsibility. However, in modern times, emotional and caring male images are also considered attractive.
+
+**Alpha Male Characteristics and Appeal**
+
+- Charisma and leadership
+- Strong mental fortitude
+- Responsibility and reliability
+- Decisiveness and drive
+
+Alpha males are a type that reinterprets traditional masculinity in a modern way.
+
+**Soft Male Characteristics and Appeal**
+
+- Pure and kind personality
+- High empathy
+- Sense of humor and friendliness
+- Freedom of emotional expression
+
+Soft males are a representative type of new masculinity, characterized by high emotional intelligence.
+
+**Social Meaning and Implications**
+
+This classification reflects social changes that break gender stereotypes and recognize diverse attractions.`
+      },
+      author: {
+        ko: "박사회",
+        en: "Dr. Park"
+      },
       date: "2024-01-10",
       readTime: 6,
-      category: "사회 트렌드",
-      tags: ["에겐남", "테토남", "남성성", "사회심리"]
+      category: {
+        ko: "사회 트렌드",
+        en: "Social Trends"
+      },
+      tags: {
+        ko: ["에겐남", "테토남", "남성성", "사회심리"],
+        en: ["Alpha Male", "Soft Male", "Masculinity", "Social Psychology"]
+      }
     },
     {
       id: 3,
-      title: "성공적인 연애를 위한 5가지 심리학 팁",
-      excerpt: "심리학 연구를 바탕으로 한 건강하고 지속가능한 연애 관계를 만드는 실용적인 조언들을 소개합니다.",
-      content: `심리학 연구에 기반한 성공적인 연애의 비밀을 알아보겠습니다.
+      title: {
+        ko: "성공적인 연애를 위한 5가지 심리학 팁",
+        en: "5 Psychology Tips for Successful Relationships"
+      },
+      excerpt: {
+        ko: "심리학 연구를 바탕으로 한 건강하고 지속가능한 연애 관계를 만드는 실용적인 조언들을 소개합니다.",
+        en: "Introducing practical advice based on psychological research for building healthy and sustainable romantic relationships."
+      },
+      content: {
+        ko: `심리학 연구에 기반한 성공적인 연애의 비밀을 알아보겠습니다.
 
 **1. 애착 유형 이해하기**
 
@@ -115,17 +202,71 @@ const Blog = () => {
 **5. 개인 성장과 관계 발전**
 
 건강한 관계는 개인의 성장을 바탕으로 합니다. 서로의 꿈과 목표를 지지하며 함께 발전해나가는 것이 중요합니다.`,
-      author: "이연애",
+        en: `Let's explore the secrets to successful relationships based on psychological research.
+
+**1. Understanding Attachment Styles**
+
+According to John Bowlby's attachment theory, our romantic patterns are influenced by childhood experiences.
+
+- Secure: Healthy relationship formation
+- Avoidant: Fear of intimacy
+- Anxious: Excessive worry about relationships
+- Disorganized: Inconsistent relationship patterns
+
+**2. Effective Communication Methods**
+
+- Use 'I' messages
+- Practice active listening
+- Apply nonviolent communication
+- Importance of emotional expression
+
+**3. Conflict Resolution Strategies**
+
+Dr. Gottman's research shows successful couples exhibit special conflict resolution patterns.
+
+- Specific requests instead of criticism
+- Avoid defensive attitudes
+- Prohibit contemptuous expressions
+- Overcome stonewalling
+
+**4. Ways to Enhance Intimacy**
+
+- Express daily interest
+- Create common interests
+- Importance of physical contact
+- Provide emotional support
+
+**5. Personal Growth and Relationship Development**
+
+Healthy relationships are based on personal growth. Supporting each other's dreams and goals and growing together is important.`
+      },
+      author: {
+        ko: "이연애",
+        en: "Lee Love"
+      },
       date: "2024-01-08",
       readTime: 10,
-      category: "연애 가이드",
-      tags: ["연애팁", "관계심리", "소통", "갈등해결"]
+      category: {
+        ko: "연애 가이드",
+        en: "Love Guide"
+      },
+      tags: {
+        ko: ["연애팁", "관계심리", "소통", "갈등해결"],
+        en: ["Dating Tips", "Relationship Psychology", "Communication", "Conflict Resolution"]
+      }
     },
     {
       id: 4,
-      title: "현대인의 스트레스와 성격변화 패턴",
-      excerpt: "디지털 시대의 스트레스가 우리의 성격에 미치는 영향과 대처 방안을 심층 분석합니다.",
-      content: `현대 사회의 스트레스는 우리의 성격 형성에 큰 영향을 미칩니다.
+      title: {
+        ko: "현대인의 스트레스와 성격변화 패턴",
+        en: "Stress and Personality Change Patterns in Modern People"
+      },
+      excerpt: {
+        ko: "디지털 시대의 스트레스가 우리의 성격에 미치는 영향과 대처 방안을 심층 분석합니다.",
+        en: "An in-depth analysis of how stress in the digital age affects our personality and coping strategies."
+      },
+      content: {
+        ko: `현대 사회의 스트레스는 우리의 성격 형성에 큰 영향을 미칩니다.
 
 **디지털 스트레스의 특징**
 
@@ -165,17 +306,74 @@ const Blog = () => {
 **스트레스 관리의 중요성**
 
 적절한 스트레스 관리는 성격의 긍정적 변화를 도모하고 전반적인 삶의 질을 향상시킵니다.`,
-      author: "정스트레스",
+        en: `Stress in modern society greatly influences our personality formation.
+
+**Characteristics of Digital Stress**
+
+- SNS comparison psychology
+- Information overload
+- Pressure for immediacy
+- Superficial online relationships
+
+**Effects of Stress on Personality**
+
+**1. Changes in Extraversion**
+Due to COVID-19 and increased digital communication, many people have become more introverted.
+
+**2. Increase in Neuroticism**
+Uncertain futures and competitive societies increase anxiety and sensitivity.
+
+**3. Decrease in Openness**
+A tendency to seek safety reduces openness to new experiences.
+
+**Ways to Maintain a Healthy Personality**
+
+**Practice Mindfulness**
+- Meditation and yoga
+- Connection with nature
+- Digital detox
+
+**Strengthen Social Connections**
+- Increase offline meetings
+- Have deep conversations
+- Participate in community activities
+
+**Self-development and Growth**
+- Develop new hobbies
+- Learning and challenges
+- Goal setting and achievement
+
+**Importance of Stress Management**
+
+Proper stress management promotes positive personality changes and improves overall quality of life.`
+      },
+      author: {
+        ko: "정스트레스",
+        en: "Jung Stress"
+      },
       date: "2024-01-05",
       readTime: 7,
-      category: "현대 심리",
-      tags: ["스트레스", "성격변화", "디지털", "현대사회"]
+      category: {
+        ko: "현대 심리",
+        en: "Modern Psychology"
+      },
+      tags: {
+        ko: ["스트레스", "성격변화", "디지털", "현대사회"],
+        en: ["Stress", "Personality Change", "Digital", "Modern Society"]
+      }
     },
     {
       id: 5,
-      title: "빅파이브 성격이론으로 본 직업 적성",
-      excerpt: "빅파이브 성격 모델을 활용하여 자신에게 맞는 직업과 진로를 찾는 방법을 알아봅시다.",
-      content: `빅파이브 성격 이론은 직업 선택과 진로 설계에 중요한 지침을 제공합니다.
+      title: {
+        ko: "빅파이브 성격이론으로 본 직업 적성",
+        en: "Career Aptitude Based on Big Five Personality Theory"
+      },
+      excerpt: {
+        ko: "빅파이브 성격 모델을 활용하여 자신에게 맞는 직업과 진로를 찾는 방법을 알아봅시다.",
+        en: "Let's learn how to find suitable jobs and career paths using the Big Five personality model."
+      },
+      content: {
+        ko: `빅파이브 성격 이론은 직업 선택과 진로 설계에 중요한 지침을 제공합니다.
 
 **빅파이브 성격 요인**
 
@@ -213,17 +411,72 @@ const Blog = () => {
 **성격 개발과 적응**
 
 성격은 어느 정도 변화 가능하므로, 원하는 직업에 맞게 자신을 발전시키는 노력도 중요합니다.`,
-      author: "최진로",
+        en: `The Big Five personality theory provides important guidelines for career choice and planning.
+
+**Big Five Personality Factors**
+
+**1. Openness**
+- High: Artists, researchers, consultants
+- Low: Accountants, bankers, managers
+
+**2. Conscientiousness**
+- High: Doctors, lawyers, managers
+- Low: Artists, entrepreneurs, journalists
+
+**3. Extraversion**
+- High: Salespeople, teachers, politicians
+- Low: Programmers, researchers, writers
+
+**4. Agreeableness**
+- High: Counselors, nurses, social workers
+- Low: Executives, judges, soldiers
+
+**5. Neuroticism**
+- High: Creative fields, counseling
+- Low: Emergency medicine, pilots, firefighters
+
+**Personality and Job Satisfaction**
+
+Studies show that people who choose jobs matching their personality have higher job satisfaction and performance.
+
+**Considerations When Choosing a Career**
+
+- Personal values and goals
+- Personality strengths and weaknesses
+- Environmental factors and opportunities
+- Long-term vision and plans
+
+**Personality Development and Adaptation**
+
+Personality can change to some extent, so efforts to develop oneself to fit the desired job are also important.`
+      },
+      author: {
+        ko: "최진로",
+        en: "Choi Career"
+      },
       date: "2024-01-03",
       readTime: 9,
-      category: "진로 상담",
-      tags: ["빅파이브", "직업적성", "진로선택", "성격이론"]
+      category: {
+        ko: "진로 상담",
+        en: "Career Counseling"
+      },
+      tags: {
+        ko: ["빅파이브", "직업적성", "진로선택", "성격이론"],
+        en: ["Big Five", "Career Aptitude", "Career Choice", "Personality Theory"]
+      }
     },
     {
       id: 6,
-      title: "Z세대의 연애관과 가치관 변화",
-      excerpt: "MZ세대의 연애 문화와 가치관 변화를 분석하고, 이들의 특징적인 성격 특성을 살펴봅니다.",
-      content: `Z세대(1997-2012년생)는 이전 세대와 다른 독특한 연애관과 가치관을 보입니다.
+      title: {
+        ko: "Z세대의 연애관과 가치관 변화",
+        en: "Changes in Dating and Values of Generation Z"
+      },
+      excerpt: {
+        ko: "MZ세대의 연애 문화와 가치관 변화를 분석하고, 이들의 특징적인 성격 특성을 살펴봅니다.",
+        en: "Analyze the dating culture and value changes of the MZ generation and examine their characteristic personality traits."
+      },
+      content: {
+        ko: `Z세대(1997-2012년생)는 이전 세대와 다른 독특한 연애관과 가치관을 보입니다.
 
 **Z세대 연애의 특징**
 
@@ -271,17 +524,82 @@ Z세대는 감정과 생각의 솔직한 표현을 중요하게 여깁니다.
 **건강한 관계를 위한 조언**
 
 Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, 인내심 있는 관계 구축이 중요합니다.`,
-      author: "김젠지",
+        en: `Generation Z (born 1997-2012) shows unique dating views and values different from previous generations.
+
+**Characteristics of Gen Z Dating**
+
+**1. Individualistic Tendencies**
+- Prioritize self-realization
+- Seek independent relationships
+- Emphasize personal growth and development
+
+**2. Digital Natives**
+- Meeting and communication through SNS
+- Use of online dating apps
+- Familiarity with digital expression
+
+**3. Diversity and Inclusiveness**
+- Recognize gender and orientation diversity
+- Reject traditional role distinctions
+- Accept open relationship forms
+
+**Values Emphasized in Dating**
+
+**Honest Communication**
+Gen Z values honest expression of feelings and thoughts.
+
+**Mutual Respect**
+They seek relationships that recognize and respect individuality and independence.
+
+**Mutual Growth**
+They want partners who can grow and develop together.
+
+**Flexible Relationships**
+They prefer free relationships not bound by traditional frameworks.
+
+**Differences from Older Generations**
+
+- Changed perceptions of marriage
+- Prioritize personal happiness over economic stability
+- Pursue present satisfaction over long-term plans
+
+**Challenges in Gen Z Dating**
+
+- Difficulty forming deep relationships
+- Side effects of instant gratification culture
+- Gap between reality and ideals
+
+**Advice for Healthy Relationships**
+
+For Gen Z, balancing online and offline, sincere communication, and patient relationship building are important.`
+      },
+      author: {
+        ko: "김젠지",
+        en: "Kim Gen Z"
+      },
       date: "2024-01-01",
       readTime: 8,
-      category: "세대 문화",
-      tags: ["Z세대", "MZ세대", "연애문화", "가치관변화"]
+      category: {
+        ko: "세대 문화",
+        en: "Generational Culture"
+      },
+      tags: {
+        ko: ["Z세대", "MZ세대", "연애문화", "가치관변화"],
+        en: ["Gen Z", "MZ Generation", "Dating Culture", "Value Changes"]
+      }
     },
     {
       id: 7,
-      title: "심리학으로 본 첫인상의 과학",
-      excerpt: "첫 만남에서 형성되는 인상이 관계에 미치는 영향과 긍정적인 첫인상을 만드는 심리학적 방법들을 소개합니다.",
-      content: `첫인상은 7초 안에 결정되며, 이후 관계에 지속적인 영향을 미칩니다.
+      title: {
+        ko: "심리학으로 본 첫인상의 과학",
+        en: "The Science of First Impressions from Psychology"
+      },
+      excerpt: {
+        ko: "첫 만남에서 형성되는 인상이 관계에 미치는 영향과 긍정적인 첫인상을 만드는 심리학적 방법들을 소개합니다.",
+        en: "Introducing the impact of first impressions formed at first meetings on relationships and psychological methods to create positive first impressions."
+      },
+      content: {
+        ko: `첫인상은 7초 안에 결정되며, 이후 관계에 지속적인 영향을 미칩니다.
 
 **첫인상 형성의 메커니즘**
 
@@ -335,17 +653,88 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
 - 선입견 없이 상대방 이해하기
 - 지속적인 관심과 소통
 - 진정성 있는 태도 유지`,
-      author: "박첫인상",
+        en: `First impressions are formed within 7 seconds and have lasting effects on relationships.
+
+**Mechanisms of First Impression Formation**
+
+**1. Halo Effect**
+One positive trait influences the overall evaluation.
+
+**2. Confirmation Bias**
+Once a first impression is formed, only information supporting it is selectively accepted.
+
+**3. Fundamental Attribution Error**
+Tendency to interpret behavior as personality-based rather than situational.
+
+**Factors Affecting First Impressions**
+
+**Appearance and Clothing**
+- Neat appearance and appropriate attire
+- Body language and posture
+- Smile and eye contact
+
+**Voice and Tone**
+- Tone and speed of voice
+- Pronunciation and intonation
+- Content and manner of conversation
+
+**Behavior and Attitude**
+- Courtesy and manners
+- Confidence and sincerity
+- Interest in the other person
+
+**Creating Positive First Impressions**
+
+**1. SOLER Technique**
+- S(Square): Keep shoulders straight
+- O(Open): Adopt an open posture
+- L(Lean): Slightly lean toward the other person
+- E(Eye contact): Appropriate eye contact
+- R(Relax): Create a comfortable atmosphere
+
+**2. Mirroring Effect**
+Naturally mimic the other person's behavior or tone to increase intimacy.
+
+**3. Empathic Listening**
+Show genuine interest and respond appropriately to the other person's words.
+
+**Limitations and Overcoming First Impressions**
+
+Since first impressions are not always accurate, it is important to take time to get to know the other person more deeply.
+
+**Tips for Relationship Development**
+
+- Understand the other person without prejudice
+- Maintain continuous interest and communication
+- Keep a sincere attitude`
+      },
+      author: {
+        ko: "박첫인상",
+        en: "Park First Impression"
+      },
       date: "2023-12-28",
       readTime: 6,
-      category: "인간관계",
-      tags: ["첫인상", "인상관리", "인간관계", "사회심리"]
+      category: {
+        ko: "인간관계",
+        en: "Human Relations"
+      },
+      tags: {
+        ko: ["첫인상", "인상관리", "인간관계", "사회심리"],
+        en: ["First Impression", "Impression Management", "Human Relations", "Social Psychology"]
+      }
     },
     {
       id: 8,
-      title: "감정지능(EQ)을 높이는 실전 가이드",
-      excerpt: "감정지능의 중요성과 일상생활에서 EQ를 향상시킬 수 있는 구체적인 방법들을 제시합니다.",
-      content: `감정지능(EQ)은 성공과 행복의 핵심 요소로 주목받고 있습니다.
+      title: {
+        ko: "감정지능(EQ)을 높이는 실전 가이드",
+        en: "Practical Guide to Improving Emotional Intelligence (EQ)"
+      },
+      excerpt: {
+        ko: "감정지능의 중요성과 일상생활에서 EQ를 향상시킬 수 있는 구체적인 방법들을 제시합니다.",
+        en: "Presents the importance of emotional intelligence and specific ways to improve EQ in daily life."
+      },
+      content: {
+        ko: `감정지능(EQ)은 성공과 행복의 핵심 요소로 주목받고 있습니다.
 
 **감정지능의 4가지 구성요소**
 
@@ -416,13 +805,113 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
 - 건강한 관계 모델링
 
 감정지능은 타고나는 것이 아니라 후천적으로 개발 가능한 능력입니다.`,
-      author: "한감정",
+        en: `Emotional intelligence (EQ) is recognized as a key factor for success and happiness.
+
+**Four Components of Emotional Intelligence**
+
+**1. Self-Awareness**
+- Recognize one's emotional state
+- Understand causes of emotions
+- Recognize strengths and weaknesses
+
+**2. Self-Management**
+- Ability to regulate emotions
+- Stress management
+- Impulse control
+
+**3. Social Awareness**
+- Understand others' emotions
+- Empathy
+- Interpret nonverbal cues
+
+**4. Relationship Management**
+- Effective communication
+- Conflict resolution
+- Cooperation and leadership
+
+**Practical Ways to Improve EQ**
+
+**Increase Self-Awareness**
+- Keep an emotion diary
+- Meditation and self-reflection
+- Actively accept feedback
+
+**Practice Emotion Regulation**
+- Deep breathing and relaxation techniques
+- Cognitive reappraisal
+- Positive self-talk
+
+**Develop Empathy**
+- Practice active listening
+- Think from others' perspectives
+- Maintain nonjudgmental attitude
+
+**Enhance Communication Skills**
+- Use 'I' messages
+- Practice emotional expression
+- Provide constructive feedback
+
+**Characteristics of People with High EQ**
+
+- Calm under stress
+- Harmonious relationships
+- Flexible adaptation to change
+- Confidence and optimism
+
+**Application in Daily Life**
+
+**At Work**
+- Strengthen cooperation with colleagues
+- Improve customer service
+- Demonstrate leadership
+
+**In Love and Marriage**
+- Improve communication with partner
+- Resolve conflicts
+- Enhance intimacy
+
+**In Child Education**
+- Emotional coaching
+- Empathic communication
+- Modeling healthy relationships
+
+Emotional intelligence is not innate but can be developed.`
+      },
+      author: {
+        ko: "한감정",
+        en: "Han Emotion"
+      },
       date: "2023-12-25",
       readTime: 9,
-      category: "감정 관리",
-      tags: ["감정지능", "EQ", "감정관리", "인간관계"]
+      category: {
+        ko: "감정 관리",
+        en: "Emotion Management"
+      },
+      tags: {
+        ko: ["감정지능", "EQ", "감정관리", "인간관계"],
+        en: ["Emotional Intelligence", "EQ", "Emotion Management", "Human Relations"]
+      }
     }
   ];
+
+  const texts = {
+    ko: {
+      title: "📚 심리테스트 블로그",
+      subtitle: "성격분석과 심리학에 대한 전문적이고 유용한 정보를 제공합니다",
+      readButton: "전체 글 읽기",
+      moreContent: "더 많은 심리학 콘텐츠가 곧 업데이트됩니다!",
+      readTime: "분"
+    },
+    en: {
+      title: "📚 Psychology Test Blog",
+      subtitle: "Providing professional and useful information about personality analysis and psychology",
+      readButton: "Read Full Article",
+      moreContent: "More psychology content will be updated soon!",
+      readTime: "min"
+    }
+  };
+
+  const t = texts[language];
 
   if (selectedPost) {
     return (
@@ -435,25 +924,20 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 dark:from-gray-900 dark:to-gray-800">
       <Helmet>
-        <title>심리테스트 블로그 - SimpleTest.kr</title>
-        <meta name="description" content="성격분석, 연애심리, MBTI, 심리학 이론 등 다양한 심리테스트와 관련된 전문 콘텐츠를 제공하는 블로그입니다." />
-        <meta name="keywords" content="심리테스트 블로그, 성격분석, 연애심리, MBTI, 심리학, 성격유형, 인간관계" />
-        <meta property="og:title" content="심리테스트 블로그 - 성격과 심리에 대한 모든 것" />
-        <meta property="og:description" content="성격분석, 연애심리, MBTI 등 심리학 전문 콘텐츠를 만나보세요. 전문가가 작성한 양질의 심리학 정보를 제공합니다." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://simpletest.kr/blog" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="심리테스트 블로그 - 성격과 심리에 대한 모든 것" />
-        <meta name="twitter:description" content="성격분석, 연애심리, MBTI 등 심리학 전문 콘텐츠를 만나보세요." />
+        <title>{language === 'ko' ? '심리테스트 블로그 - SimpleTest.kr' : 'Psychology Test Blog - SimpleTest.kr'}</title>
+        <meta name="description" content={language === 'ko' ? 
+          "성격분석, 연애심리, MBTI, 심리학 이론 등 다양한 심리테스트와 관련된 전문 콘텐츠를 제공하는 블로그입니다." :
+          "A blog providing professional content related to various psychological tests including personality analysis, love psychology, MBTI, and psychological theories."
+        } />
       </Helmet>
       
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 pt-8">
           <h1 className="text-5xl font-bold text-gray-800 mb-4 dark:text-white">
-            📚 심리테스트 블로그
+            {t.title}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            성격분석과 심리학에 대한 전문적이고 유용한 정보를 제공합니다
+            {t.subtitle}
           </p>
         </div>
 
@@ -467,25 +951,25 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
                   <Badge variant="outline" className="text-xs dark:border-gray-600">
-                    {post.category}
+                    {post.category[language]}
                   </Badge>
                   <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
                     <Clock className="h-3 w-3 mr-1" />
-                    {post.readTime}분
+                    {post.readTime}{t.readTime}
                   </div>
                 </div>
                 <CardTitle className="text-xl leading-tight hover:text-blue-600 transition-colors dark:text-white dark:hover:text-blue-400">
-                  {post.title}
+                  {post.title[language]}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 dark:text-gray-300">
-                  {post.excerpt}
+                  {post.excerpt[language]}
                 </p>
                 
                 <div className="space-y-4">
                   <div className="flex flex-wrap gap-1">
-                    {post.tags.map((tag, index) => (
+                    {post.tags[language].map((tag, index) => (
                       <Badge key={index} variant="secondary" className="text-xs dark:bg-gray-700 dark:text-gray-300">
                         #{tag}
                       </Badge>
@@ -495,7 +979,7 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
                   <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                     <div className="flex items-center">
                       <User className="h-3 w-3 mr-1" />
-                      {post.author}
+                      {post.author[language]}
                     </div>
                     <div className="flex items-center">
                       <Calendar className="h-3 w-3 mr-1" />
@@ -505,7 +989,7 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
                 </div>
 
                 <Button className="w-full mt-4" variant="outline">
-                  전체 글 읽기
+                  {t.readButton}
                 </Button>
               </CardContent>
             </Card>
@@ -514,7 +998,7 @@ Z세대에게는 온라인과 오프라인의 균형, 진정성 있는 소통, �
 
         <div className="text-center mt-12">
           <p className="text-gray-600 dark:text-gray-300">
-            더 많은 심리학 콘텐츠가 곧 업데이트됩니다!
+            {t.moreContent}
           </p>
         </div>
       </div>
