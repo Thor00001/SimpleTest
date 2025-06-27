@@ -105,7 +105,7 @@ const PrivacyPolicy = () => {
               <div className="bg-gray-100 p-4 rounded-lg">
                 <div className="text-gray-700">
                   <p><strong>성명:</strong> 개인정보보호책임자</p>
-                  <p><strong>연락처:</strong> privacy@simpletest.kr</p>
+                  <p><strong>연락처:</strong> contact@simpletest.kr</p>
                   <p><strong>처리방침 변경일자:</strong> 2024년 6월 24일</p>
                 </div>
               </div>

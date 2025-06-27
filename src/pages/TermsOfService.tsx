@@ -109,7 +109,7 @@ const TermsOfService = () => {
 
             <div className="text-center text-gray-500 text-sm mt-8 pt-8 border-t">
               <p>본 이용약관은 2024년 6월 24일부터 적용됩니다.</p>
-              <p>문의사항: support@simpletest.kr</p>
+              <p>문의사항: contact@simpletest.kr</p>
             </div>
           </CardContent>
         </Card>
