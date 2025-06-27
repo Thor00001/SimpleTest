@@ -1,7 +1,14 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const TermsOfService = () => {
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    document.title = language === 'ko' ? '이용약관 - SimpleTest.kr' : 'Terms of Service - SimpleTest.kr';
+  }, [language]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,7 +116,7 @@ const TermsOfService = () => {
 
             <div className="text-center text-gray-500 text-sm mt-8 pt-8 border-t">
               <p>본 이용약관은 2024년 6월 24일부터 적용됩니다.</p>
-              <p>문의사항: contact@simpletest.kr</p>
+              <p>문의사항: support@simpletest.kr</p>
             </div>
           </CardContent>
         </Card>

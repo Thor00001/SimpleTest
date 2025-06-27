@@ -1,11 +1,14 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertTriangle, Info, Shield, RefreshCw } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Disclaimer = () => {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    document.title = language === 'ko' ? '면책조항 - SimpleTest.kr' : 'Disclaimer - SimpleTest.kr';
+  }, [language]);
 
   const content = {
     ko: {
