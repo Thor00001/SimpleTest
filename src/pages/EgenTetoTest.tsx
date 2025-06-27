@@ -102,7 +102,7 @@ const EgenTetoTest = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <span>📱</span>
-                    <span>SNS 공유</span>
+                    <span>결과 공유</span>
                   </div>
                 </div>
               </CardContent>

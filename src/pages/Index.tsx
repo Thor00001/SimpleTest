@@ -139,7 +139,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <span>📱</span>
-                  <span>{language === 'ko' ? 'SNS 공유' : 'SNS Share'}</span>
+                  <span>{language === 'ko' ? '결과 공유' : 'Share Result'}</span>
                 </div>
               </div>
             </CardContent>
