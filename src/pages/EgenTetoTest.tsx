@@ -40,7 +40,7 @@ const EgenTetoTest = () => {
         time: "약 2분 소요",
         questions: "10개 질문",
         accuracy: "정확한 분석",
-        share: "SNS 공유"
+        share: "결과 공유"
       }
     },
     en: {
@@ -67,7 +67,7 @@ const EgenTetoTest = () => {
         time: "About 2 minutes",
         questions: "10 questions",
         accuracy: "Accurate analysis",
-        share: "SNS sharing"
+        share: "Result sharing"
       }
     }
   };

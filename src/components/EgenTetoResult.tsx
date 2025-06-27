@@ -140,12 +140,6 @@ const EgenTetoResult = ({ result, gender, onRestart }: EgenTetoResultProps) => {
 
   return (
     <div className="space-y-8">
-      <div className="text-center">
-        <div className="text-8xl mb-4">{data.emoji}</div>
-        <h1 className="text-5xl font-bold text-white mb-2">{data.title[language]}</h1>
-        <p className="text-2xl text-white/90 mb-6">{data.subtitle[language]}</p>
-      </div>
-
       <div className="bg-white rounded-lg p-8 shadow-2xl" ref={resultRef}>
         <div className="text-center mb-6">
           <div className="text-6xl mb-4">{data.emoji}</div>

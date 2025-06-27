@@ -1,9 +1,8 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, User, Clock, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface BlogPostProps {
@@ -112,11 +111,7 @@ const BlogPost = ({ post, onBack }: BlogPostProps) => {
             {post.title[language]}
           </CardTitle>
           
-          <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-            <div className="flex items-center">
-              <User className="h-4 w-4 mr-1" />
-              {post.author[language]}
-            </div>
+          <div className="flex items-center justify-end text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-1" />
               {post.date}

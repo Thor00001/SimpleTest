@@ -122,7 +122,10 @@ const Index = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-gray-600 text-lg leading-relaxed dark:text-gray-300 whitespace-pre-line">
-                {t('home.popular.description')}
+                {language === 'ko' ? 
+                  "나만의 숨겨진 매력을 발견해보세요! 🌟\n단 몇 분만에 당신의 진짜 모습을 알아보는 특별한 심리 테스트입니다.\n200만 명이 선택한 가장 정확하고 재미있는 성격 분석을 경험해보세요!" :
+                  "Discover your hidden charms! 🌟\nSpecial psychological tests that reveal your true self in just a few minutes.\nExperience the most accurate and fun personality analysis chosen by 2 million people!"
+                }
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
@@ -139,7 +142,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   <span>📱</span>
-                  <span>{language === 'ko' ? '결과 공유' : 'Share Result'}</span>
+                  <span>{language === 'ko' ? '결과 공유' : 'Result Sharing'}</span>
                 </div>
               </div>
             </CardContent>
