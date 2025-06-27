@@ -17,20 +17,12 @@ const PrivacyPolicy = () => {
         },
         collection: {
           title: "2. 수집하는 개인정보 항목",
-          required: {
-            title: "필수 수집 정보",
-            items: ["없음"]
-          },
-          optional: {
-            title: "선택 수집 정보",
-            items: ["없음"]
-          }
+          required: { title: "필수 수집 정보", items: ["없음"] },
+          optional: { title: "선택 수집 정보", items: ["없음"] }
         },
         retention: {
           title: "3. 개인정보 보유 및 이용기간",
-          items: [
-            "개인정보를 수집하지 않으므로 보유 및 이용 기간은 존재하지 않습니다."
-          ]
+          items: ["개인정보를 수집하지 않으므로 보유 및 이용 기간은 존재하지 않습니다."]
         },
         thirdParty: {
           title: "4. 개인정보 제3자 제공",
@@ -64,6 +56,57 @@ const PrivacyPolicy = () => {
         }
       },
       footer: "이 개인정보 처리방침은 「개인정보 보호법」 제30조에 따라 작성되었으며, 2025년 6월 27일부터 적용됩니다."
+    },
+    en: {
+      title: "Privacy Policy",
+      subtitle: "Privacy Policy in accordance with Personal Information Protection Act",
+      sections: {
+        purpose: {
+          title: "1. Purpose of Personal Information Collection and Use",
+          description: "SimpleTest.kr does not collect or use any personal information. The site only generates and displays test results without login, membership, or payment functions.",
+          items: []
+        },
+        collection: {
+          title: "2. Personal Information Items Collected",
+          required: { title: "Required Information", items: ["None"] },
+          optional: { title: "Optional Information", items: ["None"] }
+        },
+        retention: {
+          title: "3. Personal Information Retention and Usage Period",
+          items: ["Since no personal information is collected, there is no retention or usage period."]
+        },
+        thirdParty: {
+          title: "4. Third Party Provision of Personal Information",
+          description: "SimpleTest.kr does not collect personal information and therefore does not provide it to third parties.",
+          items: []
+        },
+        rights: {
+          title: "5. Rights of Data Subjects",
+          description: "As no personal information is collected, there are no rights for data subjects to exercise.",
+          items: []
+        },
+        security: {
+          title: "6. Personal Information Security Measures",
+          items: [
+            "SimpleTest.kr does not collect personal information, but the site is securely operated through HTTPS encrypted communication."
+          ]
+        },
+        policyChange: {
+          title: "7. Privacy Policy Changes",
+          description: "This policy may be modified without prior notice according to changes in laws or service content, and any changes will be announced on this page.",
+          items: [
+            "Effective Date: June 27, 2025",
+            "Notification Method: Announcement on this page"
+          ]
+        },
+        contact: {
+          title: "8. Personal Information Protection Officer",
+          name: "Name: Personal Information Protection Officer",
+          email: "Email: contact@simpletest.kr",
+          updated: "This privacy policy is effective from June 27, 2025."
+        }
+      },
+      footer: "This privacy policy was prepared in accordance with Article 30 of the Personal Information Protection Act and is effective from June 27, 2025."
     }
   };
 
