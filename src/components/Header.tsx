@@ -1,8 +1,8 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Switch } from '@/components/ui/switch';
 import {
   DropdownMenu,
@@ -17,10 +17,20 @@ const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle('dark');
+  };
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    setIsMenuOpen(false);
   };
 
   const menuItems = [
@@ -36,24 +46,24 @@ const Header = () => {
     <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-purple-100 sticky top-0 z-50 dark:bg-gray-900/95 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="flex items-center space-x-2">
+          <button onClick={() => handleNavigation('/')} className="flex items-center space-x-2">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               SimpleTest.kr
             </div>
-          </Link>
+          </button>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-8">
             {menuItems.map((item) => (
-              <Link
+              <button
                 key={item.path}
-                to={item.path}
+                onClick={() => handleNavigation(item.path)}
                 className={`text-gray-700 hover:text-purple-600 transition-colors dark:text-gray-300 dark:hover:text-purple-400 ${
                   location.pathname === item.path ? 'text-purple-600 font-semibold dark:text-purple-400' : ''
                 }`}
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
           </nav>
 
@@ -100,15 +110,14 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-purple-100 dark:border-gray-700">
             <nav className="space-y-2 mb-4">
               {menuItems.map((item) => (
-                <Link
+                <button
                   key={item.path}
-                  to={item.path}
-                  className="block py-2 px-4 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-purple-400"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => handleNavigation(item.path)}
+                  className="block w-full text-left py-2 px-4 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-colors dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-purple-400"
                 >
                   <div className="font-medium">{item.name}</div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">{item.description}</div>
-                </Link>
+                </button>
               ))}
             </nav>
             

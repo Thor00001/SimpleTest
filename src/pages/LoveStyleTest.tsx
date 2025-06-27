@@ -1,9 +1,9 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ArrowRight, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, RotateCcw, Share2, Download } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const LoveStyleTest = () => {
   const [currentStep, setCurrentStep] = useState<'intro' | 'test' | 'result'>('intro');
@@ -11,6 +11,7 @@ const LoveStyleTest = () => {
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [result, setResult] = useState<any>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const questions = [
     {
@@ -153,6 +154,61 @@ const LoveStyleTest = () => {
     setCurrentStep('result');
   };
 
+  const handleShare = async () => {
+    const testUrl = `${window.location.origin}/love-style-test`;
+    const shareText = `연애 스타일 테스트 결과\n${result ? `나는 ${result.title}!` : ''}\n\n${result ? result.description : ''}\n\n테스트 해보기: ${testUrl}`;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '연애 스타일 테스트 결과',
+          text: shareText,
+          url: testUrl
+        });
+      } catch (error) {
+        console.log('공유 취소됨');
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        alert('테스트 링크가 클립보드에 복사되었습니다!');
+      } catch (error) {
+        console.error('클립보드 복사 실패:', error);
+        const textArea = document.createElement('textarea');
+        textArea.value = shareText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('테스트 링크가 클립보드에 복사되었습니다!');
+      }
+    }
+  };
+
+  const handleDownload = async () => {
+    if (!resultRef.current) return;
+
+    try {
+      const html2canvas = (await import('html2canvas')).default;
+      const canvas = await html2canvas(resultRef.current, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        width: resultRef.current.offsetWidth,
+        height: resultRef.current.offsetHeight
+      });
+
+      const link = document.createElement('a');
+      link.download = `연애스타일_${result.title}_결과.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (error) {
+      console.error('이미지 저장 실패:', error);
+      alert('이미지 저장에 실패했습니다. 스크린샷을 이용해 주세요.');
+    }
+  };
+
   const handleAnswerSelect = (answerIndex: number) => {
     setSelectedAnswer(answerIndex);
   };
@@ -191,6 +247,18 @@ const LoveStyleTest = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 p-4 dark:from-purple-900 dark:via-pink-900 dark:to-red-900">
+      <Helmet>
+        <title>연애 스타일 테스트 - SimpleTest.kr</title>
+        <meta name="description" content="8가지 질문으로 알아보는 나만의 연애 스타일! 로맨틱, 플레이풀, 컴패니언, 인디펜던트 중 어떤 타입인지 확인해보세요." />
+        <meta name="keywords" content="연애 스타일, 연애 테스트, 사랑 유형, 연애 성향, 로맨스 테스트, 심리테스트" />
+        <meta property="og:title" content="연애 스타일 테스트 - 나만의 사랑 방식은?" />
+        <meta property="og:description" content="8가지 질문으로 알아보는 나만의 연애 스타일! 당신만의 독특한 사랑 방식을 발견해보세요." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://simpletest.kr/love-style-test" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="연애 스타일 테스트 - 나만의 사랑 방식은?" />
+        <meta name="twitter:description" content="8가지 질문으로 알아보는 나만의 연애 스타일! 당신만의 독특한 사랑 방식을 발견해보세요." />
+      </Helmet>
       <div className="max-w-4xl mx-auto">
         {currentStep === 'intro' && (
           <div className="text-center animate-fade-in">
@@ -320,29 +388,62 @@ const LoveStyleTest = () => {
               <p className="text-xl text-white/80 mb-4">당신의 연애 스타일입니다</p>
             </div>
 
-            <Card className={`bg-gradient-to-br ${result.color} border-0 shadow-2xl text-white`}>
-              <CardHeader>
-                <CardTitle className="text-2xl text-center">연애 스타일 분석</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <p className="text-lg leading-relaxed text-white/90">
-                  {result.description}
-                </p>
-                
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">주요 특성</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {result.traits.map((trait: string, index: number) => (
-                      <span key={index} className="bg-white/20 text-white px-3 py-1 rounded-full text-sm border border-white/30">
-                        {trait}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+            <div className="bg-white rounded-lg p-8 shadow-2xl" ref={resultRef}>
+              <div className="text-center mb-6">
+                <div className="text-6xl mb-4">{result.emoji}</div>
+                <h1 className="text-4xl font-bold text-gray-800 mb-2">{result.title}</h1>
+                <p className="text-xl text-gray-600 mb-4">당신의 연애 스타일입니다</p>
+              </div>
 
-                <div className="bg-white/10 p-4 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-2">💡 연애 조언</h3>
-                  <p className="text-white/90">{result.advice}</p>
+              <Card className={`bg-gradient-to-br ${result.color} border-0 shadow-lg text-white mb-6`}>
+                <CardHeader>
+                  <CardTitle className="text-2xl text-center text-white">연애 스타일 분석</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <p className="text-lg leading-relaxed text-white">
+                    {result.description}
+                  </p>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">주요 특성</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {result.traits.map((trait: string, index: number) => (
+                        <span key={index} className="bg-white/30 text-white px-3 py-1 rounded-full text-sm border border-white/50">
+                          {trait}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-white/20 p-4 rounded-lg border border-white/30">
+                    <h3 className="text-xl font-semibold mb-2 text-white">💡 연애 조언</h3>
+                    <p className="text-white">{result.advice}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+              <CardContent className="pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Button 
+                    onClick={handleShare}
+                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold"
+                    size="lg"
+                  >
+                    <Share2 className="mr-2 h-5 w-5" />
+                    테스트 공유하기
+                  </Button>
+                  
+                  <Button 
+                    onClick={handleDownload}
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-bold"
+                  >
+                    <Download className="mr-2 h-5 w-5" />
+                    이미지로 저장
+                  </Button>
                 </div>
               </CardContent>
             </Card>

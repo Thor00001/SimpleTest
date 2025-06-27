@@ -33,7 +33,7 @@ const translations = {
     'home.popular.title': '가장 인기 있는 테스트',
     'home.popular.description': '지금까지 200만 명이 참여한 검증된 심리테스트입니다.\n재미있고 정확한 결과로 자신을 더 잘 알아갈 수 있어요.\n\n친구들과 함께 테스트하고 결과를 공유해보세요!\nSNS로 간편하게 공유할 수 있습니다.',
     'home.tests.title': '인기 테스트 모음',
-    'home.features.title': '왜 우리 테스트를 선택해야 할까요?',
+    'home.features.title': '한 번쯤 해볼 만한 이유 3가지!',
     'home.stats.title': '놀라운 참여 통계',
     'home.cta.title': '지금 바로 시작해보세요!',
     'home.cta.description': '2분만 투자해서 새로운 나를 발견해보세요',
@@ -107,7 +107,7 @@ const translations = {
     'footer.privacy': '개인정보처리방침',
     'footer.terms': '이용약관',
     'footer.disclaimer': '면책조항',
-    'footer.copyright': '© 2024 SimpleTest.kr. All rights reserved.',
+    'footer.copyright': '© 2025 SimpleTest.kr. All rights reserved.',
     'footer.notice': '본 사이트의 테스트 결과는 재미와 자기 이해를 위한 것이며, 전문적인 심리 상담을 대체할 수 없습니다.',
 
     // Disclaimer page
@@ -175,7 +175,7 @@ const translations = {
     'home.popular.title': 'Most Popular Test',
     'home.popular.description': 'A verified psychology test that 2 million people have participated in so far.\nDiscover yourself better with fun and accurate results.\n\nTake the test with your friends and share the results!\nEasily share on social media.',
     'home.tests.title': 'Popular Test Collection',
-    'home.features.title': 'Why Choose Our Tests?',
+    'home.features.title': 'Why Not Try? Here Are 3 Good Reasons!',
     'home.stats.title': 'Amazing Participation Statistics',
     'home.cta.title': 'Start Right Now!',
     'home.cta.description': 'Invest just 2 minutes to discover a new you',
@@ -249,7 +249,7 @@ const translations = {
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms of Service',
     'footer.disclaimer': 'Disclaimer',
-    'footer.copyright': '© 2024 SimpleTest.kr. All rights reserved.',
+    'footer.copyright': '© 2025 SimpleTest.kr. All rights reserved.',
     'footer.notice': 'The test results on this site are for entertainment and self-understanding purposes and cannot replace professional psychological counseling.',
 
     // Disclaimer page
