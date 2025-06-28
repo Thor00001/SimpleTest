@@ -150,19 +150,19 @@ const EgenTetoTest = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 mt-6 dark:text-gray-400">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>⏱️</span>
                     <span>{currentContent.stats.time}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>❓</span>
                     <span>{currentContent.stats.questions}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>🎯</span>
                     <span>{currentContent.stats.accuracy}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>📱</span>
                     <span>{currentContent.stats.share}</span>
                   </div>
