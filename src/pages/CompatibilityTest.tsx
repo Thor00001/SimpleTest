@@ -258,9 +258,9 @@ const CompatibilityTest = () => {
               </p>
             </div>
 
-            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8 dark:bg-gray-800/95">
               <CardHeader>
-                <CardTitle className="text-2xl text-gray-800">
+                <CardTitle className="text-2xl text-gray-800 dark:text-gray-200">
                   {currentContent.selectTitle}
                 </CardTitle>
               </CardHeader>
