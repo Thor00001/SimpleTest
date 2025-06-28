@@ -128,19 +128,19 @@ const Index = () => {
                 }
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 dark:text-gray-400">
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col items-center space-y-1">
                   <Clock className="h-4 w-4" />
                   <span>{language === 'ko' ? '2-5분 소요' : '2-5 minutes'}</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col items-center space-y-1">
                   <Star className="h-4 w-4" />
                   <span>{language === 'ko' ? '정확한 분석' : 'Accurate Analysis'}</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col items-center space-y-1">
                   <Users className="h-4 w-4" />
                   <span>{language === 'ko' ? '200만+ 참여' : '2M+ Participants'}</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col items-center space-y-1">
                   <span>📱</span>
                   <span>{language === 'ko' ? '결과 공유' : 'Result Sharing'}</span>
                 </div>
