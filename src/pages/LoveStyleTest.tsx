@@ -456,14 +456,14 @@ const LoveStyleTest = () => {
               </p>
             </div>
 
-            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8 dark:bg-gray-800/95">
               <CardHeader>
-                <CardTitle className="text-2xl text-gray-800">
+                <CardTitle className="text-2xl text-gray-800 dark:text-gray-200">
                   {currentContent.testTitle}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-gray-600 text-lg leading-relaxed dark:text-gray-300">
                   {currentContent.testDescription}<br/>
                   {currentContent.testSubDescription}
                 </p>
