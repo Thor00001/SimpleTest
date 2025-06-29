@@ -564,12 +564,6 @@ const LoveStyleTest = () => {
 
         {currentStep === 'result' && result && (
           <div className="animate-fade-in space-y-8">
-            <div className="text-center">
-              <div className="text-8xl mb-4">{result.emoji}</div>
-              <h1 className="text-5xl font-bold text-white mb-2">{result.title}</h1>
-              <p className="text-xl text-white/80 mb-4">{currentContent.resultTitle}</p>
-            </div>
-
             <div className="bg-white rounded-lg p-8 shadow-2xl" ref={resultRef}>
               <div className="text-center mb-6">
                 <div className="text-6xl mb-4">{result.emoji}</div>
