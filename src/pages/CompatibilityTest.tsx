@@ -329,8 +329,8 @@ const CompatibilityTest = () => {
             <div className="bg-white rounded-lg p-8 shadow-2xl dark:bg-gray-800/95" ref={resultRef}>
               <div className="text-center mb-8">
                 <div className="text-8xl mb-4">💕</div>
-                <h1 className="text-5xl font-bold text-gray-800 mb-4">{currentContent.resultTitle}</h1>
-                <p className="text-3xl text-gray-700 mb-4">{result.myType} ❤️ {result.partnerType}</p>
+                <h1 className="text-5xl font-bold text-gray-800 mb-4 dark:text-gray-200">{currentContent.resultTitle}</h1>
+                <p className="text-3xl text-gray-700 mb-4 dark:text-gray-200">{result.myType} ❤️ {result.partnerType}</p>
                 <div className="text-6xl font-bold text-pink-600 mb-4">{result.score}{language === 'ko' ? '점' : ' pts'}</div>
               </div>
 
