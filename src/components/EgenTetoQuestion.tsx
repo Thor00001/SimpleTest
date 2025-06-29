@@ -3,262 +3,188 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface EgenTetoQuestionProps {
   onComplete: (answers: number[], result: string) => void;
-  gender: 'male' | 'female' | null;
+  gender?: 'male' | 'female' | null;
 }
 
 const EgenTetoQuestion = ({ onComplete, gender }: EgenTetoQuestionProps) => {
-  const { language } = useLanguage();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const { language } = useLanguage();
 
   const questions = {
     ko: [
       {
-        id: 1,
-        question: "친구들 사이에서 당신의 포지션은?",
+        question: "친구들과 있을 때 나는...",
         options: [
-          "자연스럽게 리더 역할을 맡는다",
-          "분위기 메이커 역할을 한다",
-          "조용히 듣고 공감해준다",
-          "귀여운 막내 같은 존재다"
+          "주로 대화를 이끌어가는 편이다",
+          "조용히 듣고 있는 편이다"
         ]
       },
       {
-        id: 2,
-        question: "좋아하는 사람 앞에서 어떻게 행동하나요?",
+        question: "새로운 사람을 만날 때 나는...",
         options: [
-          "당당하게 어필한다",
-          "쿨한 척하며 관심을 끈다",
-          "수줍어하며 살짝 피한다",
-          "귀엽게 장난치며 다가간다"
+          "먼저 다가가서 인사한다",
+          "상대방이 다가올 때까지 기다린다"
         ]
       },
       {
-        id: 3,
-        question: "스트레스 받을 때 주로 어떻게 하나요?",
+        question: "갈등 상황에서 나는...",
         options: [
-          "운동이나 액티브한 활동으로 푼다",
-          "친구들과 만나서 이야기한다",
-          "혼자만의 시간을 갖는다",
-          "좋아하는 것들로 힐링한다"
+          "직접적으로 문제를 해결하려고 한다",
+          "조화를 위해 양보하는 편이다"
         ]
       },
       {
-        id: 4,
-        question: "패션 스타일은 어떤 편인가요?",
+        question: "데이트 장소를 정할 때 나는...",
         options: [
-          "시크하고 강인한 느낌",
-          "트렌디하고 멋스러운 스타일",
-          "편안하고 자연스러운 룩",
-          "귀엽고 포근한 느낌"
+          "내가 계획을 세워서 제안한다",
+          "상대방의 의견을 먼저 들어본다"
         ]
       },
       {
-        id: 5,
-        question: "갈등 상황에서 어떻게 대처하나요?",
+        question: "스트레스를 받을 때 나는...",
         options: [
-          "정면으로 맞서서 해결한다",
-          "논리적으로 설득한다",
-          "중재자 역할을 하려 한다",
-          "피하거나 누군가에게 도움을 청한다"
+          "운동이나 활동적인 것으로 해소한다",
+          "혼자만의 시간을 가지며 휴식한다"
         ]
       },
       {
-        id: 6,
-        question: "연애에서 중요하게 생각하는 것은?",
+        question: "팀 프로젝트에서 나는...",
         options: [
-          "상대방을 지켜줄 수 있는 힘",
-          "서로에 대한 깊은 이해",
-          "편안하고 따뜻한 관계",
-          "함께 있을 때의 즐거움"
+          "리더 역할을 맡는 것을 좋아한다",
+          "팀원으로서 협력하는 것을 선호한다"
         ]
       },
       {
-        id: 7,
-        question: "새로운 환경에 적응하는 방법은?",
+        question: "연인과의 관계에서 나는...",
         options: [
-          "빠르게 상황을 파악하고 주도한다",
-          "관찰 후 적절한 타이밍에 참여한다",
-          "천천히 조심스럽게 적응한다",
-          "누군가의 도움을 받아 적응한다"
+          "확실하고 분명한 표현을 선호한다",
+          "은은하고 섬세한 표현을 선호한다"
         ]
       },
       {
-        id: 8,
-        question: "친구들이 당신을 어떻게 표현하나요?",
+        question: "어려운 결정을 내려야 할 때 나는...",
         options: [
-          "든든하고 믿음직한 언니/형",
-          "쿨하고 매력적인 사람",
-          "따뜻하고 다정한 사람",
-          "귀엽고 사랑스러운 사람"
+          "빠르게 결정을 내리는 편이다",
+          "충분히 고민한 후 결정한다"
         ]
       },
       {
-        id: 9,
-        question: "취미나 관심사는 주로?",
+        question: "친구가 고민 상담을 할 때 나는...",
         options: [
-          "스포츠나 피트니스",
-          "음악, 영화 등 문화생활",
-          "독서나 조용한 활동",
-          "게임이나 귀여운 것들"
+          "구체적인 해결책을 제시한다",
+          "공감하고 위로해준다"
         ]
       },
       {
-        id: 10,
-        question: "미래에 대한 당신의 태도는?",
+        question: "나의 매력 포인트는...",
         options: [
-          "목표를 세우고 강하게 추진한다",
-          "계획을 세우되 유연하게 대처한다",
-          "자연스럽게 흘러가는 대로 둔다",
-          "불안하지만 누군가와 함께라면 괜찮다"
+          "자신감 있고 당당한 모습",
+          "따뜻하고 다정한 모습"
         ]
       }
     ],
     en: [
       {
-        id: 1,
-        question: "What's your position among friends?",
+        question: "When I'm with friends, I...",
         options: [
-          "Naturally take on a leadership role",
-          "Act as the mood maker",
-          "Listen quietly and empathize",
-          "Be like a cute youngest member"
+          "Usually lead the conversation",
+          "Tend to listen quietly"
         ]
       },
       {
-        id: 2,
-        question: "How do you act in front of someone you like?",
+        question: "When meeting new people, I...",
         options: [
-          "Confidently make my appeal",
-          "Act cool to attract attention",
-          "Get shy and slightly avoid them",
-          "Approach them with cute playfulness"
+          "Approach them first and introduce myself",
+          "Wait for them to approach me"
         ]
       },
       {
-        id: 3,
-        question: "What do you mainly do when stressed?",
+        question: "In conflict situations, I...",
         options: [
-          "Relieve stress through exercise or active activities",
-          "Meet friends and talk",
-          "Have some alone time",
-          "Heal with things I like"
+          "Try to solve problems directly",
+          "Tend to compromise for harmony"
         ]
       },
       {
-        id: 4,
-        question: "What's your fashion style like?",
+        question: "When deciding on a date location, I...",
         options: [
-          "Chic and strong feeling",
-          "Trendy and stylish",
-          "Comfortable and natural look",
-          "Cute and cozy feeling"
+          "Make plans and suggest them",
+          "Ask for the other person's opinion first"
         ]
       },
       {
-        id: 5,
-        question: "How do you handle conflict situations?",
+        question: "When I'm stressed, I...",
         options: [
-          "Face it head-on and solve it",
-          "Persuade logically",
-          "Try to play a mediator role",
-          "Avoid it or ask someone for help"
+          "Relieve it through exercise or activities",
+          "Take alone time and rest"
         ]
       },
       {
-        id: 6,
-        question: "What's important to you in relationships?",
+        question: "In team projects, I...",
         options: [
-          "The power to protect your partner",
-          "Deep understanding of each other",
-          "Comfortable and warm relationship",
-          "Joy when being together"
+          "Like to take on leadership roles",
+          "Prefer to cooperate as a team member"
         ]
       },
       {
-        id: 7,
-        question: "How do you adapt to new environments?",
+        question: "In relationships, I prefer...",
         options: [
-          "Quickly grasp the situation and take charge",
-          "Observe then participate at the right timing",
-          "Adapt slowly and carefully",
-          "Adapt with someone's help"
+          "Clear and definite expressions",
+          "Subtle and delicate expressions"
         ]
       },
       {
-        id: 8,
-        question: "How do friends describe you?",
+        question: "When making difficult decisions, I...",
         options: [
-          "Reliable and trustworthy older sibling",
-          "Cool and attractive person",
-          "Warm and affectionate person",
-          "Cute and lovable person"
+          "Make decisions quickly",
+          "Think thoroughly before deciding"
         ]
       },
       {
-        id: 9,
-        question: "What are your main hobbies or interests?",
+        question: "When friends come to me for advice, I...",
         options: [
-          "Sports or fitness",
-          "Music, movies, and cultural activities",
-          "Reading or quiet activities",
-          "Games or cute things"
+          "Provide specific solutions",
+          "Empathize and comfort them"
         ]
       },
       {
-        id: 10,
-        question: "What's your attitude toward the future?",
+        question: "My charm point is...",
         options: [
-          "Set goals and pursue them strongly",
-          "Make plans but respond flexibly",
-          "Let things flow naturally",
-          "Anxious but okay if with someone"
+          "Being confident and bold",
+          "Being warm and kind"
         ]
       }
     ]
   };
 
-  const texts = {
-    ko: {
-      question: "질문",
-      previous: "이전",
-      next: "다음",
-      viewResult: "결과 보기"
-    },
-    en: {
-      question: "Question",
-      previous: "Previous",
-      next: "Next",
-      viewResult: "View Result"
-    }
-  };
-
   const currentQuestions = questions[language];
-  const currentTexts = texts[language];
-  const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
 
-  const handleAnswerSelect = (answerIndex: number) => {
-    setSelectedAnswer(answerIndex);
-  };
-
-  const handleNext = () => {
-    if (selectedAnswer === null) return;
-    
-    const newAnswers = [...answers, selectedAnswer];
+  const handleAnswer = (answerIndex: number) => {
+    const newAnswers = [...answers, answerIndex];
     setAnswers(newAnswers);
-    setSelectedAnswer(null);
 
     if (currentQuestion < currentQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      const result = calculateResult(newAnswers, gender);
-      onComplete(newAnswers, result);
+      // Calculate result - 수정된 로직
+      // 0번 선택지는 테토(강한) 답변, 1번 선택지는 에겐(부드러운) 답변
+      const tetoScore = newAnswers.filter(answer => answer === 0).length;
+      const egenScore = newAnswers.filter(answer => answer === 1).length;
+      
+      // Determine base result type
+      const baseResult = tetoScore > egenScore ? 'TETO' : 'EGEN';
+      
+      // Add gender suffix for specific result
+      const genderSuffix = gender === 'female' ? '_FEMALE' : '_MALE';
+      const finalResult = baseResult + genderSuffix;
+      
+      onComplete(newAnswers, finalResult);
     }
   };
 
@@ -266,41 +192,41 @@ const EgenTetoQuestion = ({ onComplete, gender }: EgenTetoQuestionProps) => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
       setAnswers(answers.slice(0, -1));
-      setSelectedAnswer(answers[currentQuestion - 1] || null);
     }
   };
 
-  const calculateResult = (allAnswers: number[], selectedGender: 'male' | 'female' | null): string => {
-    const egenScore = allAnswers.reduce((acc, answer) => {
-      if (answer === 0) return acc + 3;
-      if (answer === 1) return acc + 2;
-      if (answer === 2) return acc + 1;
-      return acc;
-    }, 0);
+  const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
 
-    const isEgen = egenScore >= 15;
-    const genderSuffix = selectedGender === 'female' ? '_FEMALE' : '_MALE';
-    
-    return isEgen ? `EGEN${genderSuffix}` : `TETO${genderSuffix}`;
+  const texts = {
+    ko: {
+      questionCounter: (current: number, total: number) => `질문 ${current}/${total}`,
+      previousButton: "이전"
+    },
+    en: {
+      questionCounter: (current: number, total: number) => `Question ${current}/${total}`,
+      previousButton: "Previous"
+    }
   };
 
+  const t = texts[language];
+
   return (
-    <div className="animate-fade-in">
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-white">
-            {currentTexts.question} {currentQuestion + 1} / {currentQuestions.length}
-          </h2>
-          <span className="text-white/80 text-lg font-semibold">
+    <div className="max-w-2xl mx-auto p-4 animate-fade-in">
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-white font-medium">
+            {t.questionCounter(currentQuestion + 1, currentQuestions.length)}
+          </span>
+          <span className="text-white/70 text-sm">
             {Math.round(progress)}%
           </span>
         </div>
-        <Progress value={progress} className="h-3 bg-white/20" />
+        <Progress value={progress} className="h-2 bg-white/20" />
       </div>
 
-      <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8 dark:bg-gray-800/95">
+      <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 dark:bg-gray-800/95">
         <CardHeader>
-          <CardTitle className="text-xl text-gray-800 leading-relaxed dark:text-white">
+          <CardTitle className="text-2xl text-center text-gray-800 dark:text-white leading-relaxed">
             {currentQuestions[currentQuestion].question}
           </CardTitle>
         </CardHeader>
@@ -308,42 +234,34 @@ const EgenTetoQuestion = ({ onComplete, gender }: EgenTetoQuestionProps) => {
           {currentQuestions[currentQuestion].options.map((option, index) => (
             <Button
               key={index}
-              variant={selectedAnswer === index ? "default" : "outline"}
-              className={`w-full text-left p-6 h-auto transition-all duration-200 ${
-                selectedAnswer === index 
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105' 
-                  : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-blue-300 hover:bg-blue-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
-              }`}
-              onClick={() => handleAnswerSelect(index)}
+              onClick={() => handleAnswer(index)}
+              variant="outline"
+              size="lg"
+              className="w-full text-left justify-start h-auto py-4 px-6 text-wrap whitespace-normal leading-relaxed border-2 border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 dark:border-gray-600 dark:hover:border-blue-400 dark:hover:bg-blue-900/20 dark:text-gray-200"
             >
-              <span className="font-medium">{option}</span>
+              <span className="text-lg font-medium mr-3 text-blue-600 dark:text-blue-400">
+                {index === 0 ? 'A' : 'B'}
+              </span>
+              <span className="flex-1 text-base">{option}</span>
+              <ArrowRight className="ml-2 h-5 w-5 opacity-50" />
             </Button>
           ))}
+          
+          {currentQuestion > 0 && (
+            <div className="pt-4">
+              <Button
+                onClick={handlePrevious}
+                variant="ghost"
+                size="lg"
+                className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {t.previousButton}
+              </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
-
-      <div className="flex justify-between">
-        <Button
-          onClick={handlePrevious}
-          disabled={currentQuestion === 0}
-          variant="outline"
-          size="lg"
-          className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 disabled:opacity-50"
-        >
-          <ChevronLeft className="mr-2 h-5 w-5" />
-          {currentTexts.previous}
-        </Button>
-        
-        <Button
-          onClick={handleNext}
-          disabled={selectedAnswer === null}
-          size="lg"
-          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold disabled:opacity-50"
-        >
-          {currentQuestion === currentQuestions.length - 1 ? currentTexts.viewResult : currentTexts.next}
-          <ChevronRight className="ml-2 h-5 w-5" />
-        </Button>
-      </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,11 +21,11 @@ const EgenTetoTest = () => {
       description: "당신의 진짜 매력 포인트를 발견해보세요",
       testTitle: "🔥 에겐 vs 테토 테스트",
       testDescription: "요즘 SNS에서 화제인 에겐/테토 테스트!",
-      testSubDescription: "당신은 카리스마 넘치는 에겐? 아니면 귀여운 매력의 테토?",
+      testSubDescription: "당신은 귀여운 매력의 에겐? 아니면 카리스마 넘치는 테토?",
       egenTitle: "에겐",
-      egenDescription: "카리스마, 리더십, 강인함",
+      egenDescription: "귀여움, 다정함, 순수함",
       tetoTitle: "테토",
-      tetoDescription: "귀여움, 다정함, 순수함",
+      tetoDescription: "카리스마, 리더십, 강인함",
       startButton: "테스트 시작하기",
       genderTitle: "성별을 선택해주세요",
       genderDescription: "더 정확한 분석을 위해 성별을 알려주세요",
@@ -49,11 +48,11 @@ const EgenTetoTest = () => {
       description: "Discover your true charm points",
       testTitle: "🔥 Egen vs Teto Test",
       testDescription: "The trending Egen/Teto test on social media!",
-      testSubDescription: "Are you a charismatic Egen or a cute and charming Teto?",
+      testSubDescription: "Are you a cute and charming Egen or a charismatic Teto?",
       egenTitle: "Egen",
-      egenDescription: "Charisma, Leadership, Strength",
+      egenDescription: "Cuteness, Kindness, Purity",
       tetoTitle: "Teto",
-      tetoDescription: "Cuteness, Kindness, Purity",
+      tetoDescription: "Charisma, Leadership, Strength",
       startButton: "Start Test",
       genderTitle: "Please select your gender",
       genderDescription: "Tell us your gender for more accurate analysis",
@@ -138,15 +137,15 @@ const EgenTetoTest = () => {
                   {currentContent.testSubDescription}
                 </p>
                 <div className="grid grid-cols-2 gap-6 mt-6">
-                  <div className="text-center p-4 bg-blue-50 rounded-lg dark:bg-blue-900/30">
-                    <div className="text-4xl mb-2">😎</div>
-                    <h3 className="font-bold text-blue-800 mb-2 dark:text-blue-300">{currentContent.egenTitle}</h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">{currentContent.egenDescription}</p>
-                  </div>
                   <div className="text-center p-4 bg-pink-50 rounded-lg dark:bg-pink-900/30">
                     <div className="text-4xl mb-2">🥰</div>
-                    <h3 className="font-bold text-pink-800 mb-2 dark:text-pink-300">{currentContent.tetoTitle}</h3>
-                    <p className="text-sm text-pink-600 dark:text-pink-400">{currentContent.tetoDescription}</p>
+                    <h3 className="font-bold text-pink-800 mb-2 dark:text-pink-300">{currentContent.egenTitle}</h3>
+                    <p className="text-sm text-pink-600 dark:text-pink-400">{currentContent.egenDescription}</p>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-lg dark:bg-blue-900/30">
+                    <div className="text-4xl mb-2">😎</div>
+                    <h3 className="font-bold text-blue-800 mb-2 dark:text-blue-300">{currentContent.tetoTitle}</h3>
+                    <p className="text-sm text-blue-600 dark:text-blue-400">{currentContent.tetoDescription}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 mt-6 dark:text-gray-400">
