@@ -599,7 +599,7 @@ const LoveStyleTest = () => {
               </Card>
             </div>
 
-            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 dark:bg-gray-800/95">
               <CardContent className="pt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Button 
@@ -615,7 +615,7 @@ const LoveStyleTest = () => {
                     onClick={handleDownload}
                     variant="outline"
                     size="lg"
-                    className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-bold"
+                    className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-bold dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
                   >
                     <Download className="mr-2 h-5 w-5" />
                     {currentContent.downloadButton}
