@@ -267,7 +267,7 @@ const CompatibilityTest = () => {
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <label className="text-lg font-semibold text-gray-700">{currentContent.myMBTI}</label>
+                    <label className="text-lg font-semibold text-gray-700 dark:text-gray-300">{currentContent.myMBTI}</label>
                     <Select value={myMBTI} onValueChange={setMyMBTI}>
                       <SelectTrigger className="w-full h-12">
                         <SelectValue placeholder={currentContent.placeholder} />
@@ -283,7 +283,7 @@ const CompatibilityTest = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-lg font-semibold text-gray-700">{currentContent.partnerMBTI}</label>
+                    <label className="text-lg font-semibold text-gray-700 dark:text-gray-300">{currentContent.partnerMBTI}</label>
                     <Select value={partnerMBTI} onValueChange={setPartnerMBTI}>
                       <SelectTrigger className="w-full h-12">
                         <SelectValue placeholder={currentContent.placeholder} />
