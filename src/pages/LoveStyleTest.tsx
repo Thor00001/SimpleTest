@@ -564,11 +564,11 @@ const LoveStyleTest = () => {
 
         {currentStep === 'result' && result && (
           <div className="animate-fade-in space-y-8">
-            <div className="bg-white rounded-lg p-8 shadow-2xl" ref={resultRef}>
+            <div className="bg-white rounded-lg p-8 shadow-2xl dark:bg-gray-800/95" ref={resultRef}>
               <div className="text-center mb-6">
                 <div className="text-6xl mb-4">{result.emoji}</div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-2">{result.title}</h1>
-                <p className="text-xl text-gray-600 mb-4">{currentContent.resultTitle}</p>
+                <h1 className="text-4xl font-bold text-gray-800 mb-2 dark:text-gray-200">{result.title}</h1>
+                <p className="text-xl text-gray-600 mb-4 dark:text-gray-200">{currentContent.resultTitle}</p>
               </div>
 
               <Card className={`bg-gradient-to-br ${result.color} border-0 shadow-lg text-white mb-6`}>
