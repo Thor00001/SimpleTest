@@ -326,7 +326,7 @@ const CompatibilityTest = () => {
           </div>
         ) : (
           <div className="animate-fade-in space-y-8">
-            <div className="bg-white rounded-lg p-8 shadow-2xl" ref={resultRef}>
+            <div className="bg-white rounded-lg p-8 shadow-2xl dark:bg-gray-800/95" ref={resultRef}>
               <div className="text-center mb-8">
                 <div className="text-8xl mb-4">💕</div>
                 <h1 className="text-5xl font-bold text-gray-800 mb-4">{currentContent.resultTitle}</h1>
