@@ -110,6 +110,10 @@ const translations = {
     'footer.copyright': '© 2025 SimpleTest.kr. All rights reserved.',
     'footer.notice': '본 사이트의 테스트 결과는 재미와 자기 이해를 위한 것이며, 전문적인 심리 상담을 대체할 수 없습니다.',
 
+    // Terms of Service
+    'terms.title': '이용약관',
+    'terms.subtitle': 'SimpleTest.kr 서비스 이용약관',
+
     // Disclaimer page
     'disclaimer.title': '면책조항',
     'disclaimer.subtitle': 'SimpleTest.kr 서비스 이용 시 주의사항을 안내드립니다',
@@ -251,6 +255,10 @@ const translations = {
     'footer.disclaimer': 'Disclaimer',
     'footer.copyright': '© 2025 SimpleTest.kr. All rights reserved.',
     'footer.notice': 'The test results on this site are for entertainment and self-understanding purposes and cannot replace professional psychological counseling.',
+
+    // Terms of Service
+    'terms.title': 'Terms of Service',
+    'terms.subtitle': 'SimpleTest.kr Service Terms of Use',
 
     // Disclaimer page
     'disclaimer.title': 'Disclaimer',

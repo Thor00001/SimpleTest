@@ -174,19 +174,19 @@ const PersonalityTest = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 mt-6 dark:text-gray-400">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>⏱️</span>
                     <span>{t.timeRequired}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>❓</span>
                     <span>{t.questions}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>🎯</span>
                     <span>{t.accurate}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col items-center space-y-1">
                     <span>📱</span>
                     <span>{t.shareable}</span>
                   </div>

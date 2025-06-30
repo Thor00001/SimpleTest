@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, User, Clock } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 import BlogPost from '@/components/BlogPost';
@@ -976,11 +976,7 @@ Emotional intelligence is not innate but can be developed.`
                     ))}
                   </div>
                   
-                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                    <div className="flex items-center">
-                      <User className="h-3 w-3 mr-1" />
-                      {post.author[language]}
-                    </div>
+                  <div className="flex items-center justify-center text-xs text-gray-500 dark:text-gray-400">
                     <div className="flex items-center">
                       <Calendar className="h-3 w-3 mr-1" />
                       {post.date}
