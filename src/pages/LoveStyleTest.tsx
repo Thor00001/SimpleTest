@@ -513,9 +513,9 @@ const LoveStyleTest = () => {
               <Progress value={progress} className="h-3 bg-white/20" />
             </div>
 
-            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 mb-8 hover-scale dark:bg-gray-800/90">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-800 leading-relaxed">
+                <CardTitle className="text-xl text-gray-800 leading-relaxed dark:text-white">
                   {currentQuestions[currentQuestion].question}
                 </CardTitle>
               </CardHeader>
