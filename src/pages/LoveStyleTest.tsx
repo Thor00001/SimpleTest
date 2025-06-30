@@ -527,7 +527,7 @@ const LoveStyleTest = () => {
                     className={`w-full text-left p-6 h-auto transition-all duration-200 ${
                       selectedAnswer === index 
                         ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105' 
-                        : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700'
+                        : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50 dark:bg-gray-700/80 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600.80'
                     }`}
                     onClick={() => handleAnswerSelect(index)}
                   >
