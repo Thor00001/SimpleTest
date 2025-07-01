@@ -899,14 +899,14 @@ Emotional intelligence is not innate but can be developed.`
       title: "📚 심리테스트 블로그",
       subtitle: "성격분석과 심리학에 대한 전문적이고 유용한 정보를 제공합니다",
       readButton: "전체 글 읽기",
-      moreContent: "더 많은 심리학 콘텐츠가 곧 업데이트됩니다!",
+      moreContent: "새롭고 깊이 있는 심리학 콘텐츠가 준비 중입니다. 많은 기대 부탁드립니다!",
       readTime: "분"
     },
     en: {
       title: "📚 Psychology Test Blog",
       subtitle: "Providing professional and useful information about personality analysis and psychology",
       readButton: "Read Full Article",
-      moreContent: "More psychology content will be updated soon!",
+      moreContent: "New and in-depth psychology content is on the way. Stay tuned!",
       readTime: "min"
     }
   };

@@ -117,7 +117,7 @@ const TermsOfService = () => {
               </section>
 
               <div className="text-center text-gray-500 dark:text-gray-400 text-sm mt-8 pt-8 border-t border-gray-200 dark:border-gray-600">
-                <p>본 이용약관은 2024년 6월 24일부터 적용됩니다.</p>
+                <p>본 약관은 2025년 6월 27일부터 적용되며, 별도의 공지 없이 변경될 수 있습니다.</p>
                 <p>문의사항: contact@simpletest.kr</p>
               </div>
             </CardContent>
@@ -233,7 +233,7 @@ const TermsOfService = () => {
             </section>
 
             <div className="text-center text-gray-500 dark:text-gray-400 text-sm mt-8 pt-8 border-t border-gray-200 dark:border-gray-600">
-              <p>These Terms of Service are effective from June 24, 2024.</p>
+              <p>These Terms of Service are effective from June 27, 2025.</p>
               <p>Contact: contact@simpletest.kr</p>
             </div>
           </CardContent>
