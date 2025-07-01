@@ -156,8 +156,12 @@ const Disclaimer = () => {
 
           {/* Last Updated */}
           <div className="text-center py-8 border-t border-gray-200 dark:border-gray-700">
+            <p className="font-bold">
+              ※ 본 면책조항은 SimpleTest.kr 서비스 이용 시 반드시 숙지하셔야 합니다.
+            </p>
             <p className="text-gray-500 dark:text-gray-400">
-              {currentContent.updated}: {language === 'ko' ? '2024년 3월 1일' : 'March 1, 2024'}
+              {language === 'ko' ? '본 면책조항은 2025년 6월 27일부터 시행됩니다.' : 'This disclaimer is effective from June 27, 2025.'}
+              {/*{currentContent.updated}: {language === 'ko' ? '2025년 6월 27일' : 'March 1, 2024'}*/}
             </p>
           </div>
         </div>
