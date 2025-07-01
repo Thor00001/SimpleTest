@@ -64,7 +64,7 @@ const PrivacyPolicy = () => {
         },
         contact: {
           title: "9. 개인정보 보호책임자",
-          name: "성명: 개인정보 보호담당자",
+          name: "담당자: 개인정보 보호담당자",
           email: "이메일: contact@simpletest.kr"
         }
       },
