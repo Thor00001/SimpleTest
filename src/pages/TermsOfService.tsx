@@ -233,7 +233,7 @@ const TermsOfService = () => {
             </section>
 
             <div className="text-center text-gray-500 dark:text-gray-400 text-sm mt-8 pt-8 border-t border-gray-200 dark:border-gray-600">
-              <p>These Terms of Service are effective from June 24, 2024.</p>
+              <p>These Terms of Service are effective from June 27, 2025.</p>
               <p>Contact: contact@simpletest.kr</p>
             </div>
           </CardContent>
