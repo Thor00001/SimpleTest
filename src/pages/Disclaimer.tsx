@@ -156,7 +156,7 @@ const Disclaimer = () => {
 
           {/* Last Updated */}
           <div className="text-center py-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="font-bold">
+            <p className="text-gray-500 dark:text-gray-400">
               ※ 본 면책조항은 SimpleTest.kr 서비스 이용 시 반드시 숙지하셔야 합니다.
             </p>
             <p className="text-gray-500 dark:text-gray-400">
