@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -135,8 +134,7 @@ const CompatibilityTest = () => {
       myType: myMBTI,
       partnerType: partnerMBTI,
       score: compatibility.score,
-      description: compatibility.description[language],
-      advice: getAdvice(compatibility.score)
+      compatibilityData: compatibility // Store the full compatibility data instead of just the current language description
     });
   };
 
@@ -228,6 +226,10 @@ const CompatibilityTest = () => {
     setPartnerMBTI('');
     setResult(null);
   };
+
+  // Get current description and advice based on current language
+  const currentDescription = result?.compatibilityData?.description?.[language] || '';
+  const currentAdvice = result ? getAdvice(result.score) : '';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-400 via-red-500 to-purple-500 p-4 dark:from-pink-900 dark:via-red-900 dark:to-purple-900">
@@ -344,12 +346,12 @@ const CompatibilityTest = () => {
                   </div>
                   
                   <p className="text-lg leading-relaxed text-gray-800 mb-4">
-                    {result.description}
+                    {currentDescription}
                   </p>
                   
                   <div className="bg-white/70 p-4 rounded-lg border border-pink-200">
                     <h3 className="text-xl font-semibold mb-2 text-purple-800">{currentContent.relationshipAdvice}</h3>
-                    <p className="text-gray-700">{result.advice}</p>
+                    <p className="text-gray-700">{currentAdvice}</p>
                   </div>
                 </CardContent>
               </Card>

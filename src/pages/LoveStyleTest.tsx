@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -323,11 +322,9 @@ const LoveStyleTest = () => {
     
     const selectedStyle = loveStyles[resultKey];
     setResult({
-      ...selectedStyle,
-      title: selectedStyle.title[language],
-      description: selectedStyle.description[language],
-      traits: selectedStyle.traits[language],
-      advice: selectedStyle.advice[language]
+      styleKey: resultKey, // Store the key to dynamically get content based on current language
+      emoji: selectedStyle.emoji,
+      color: selectedStyle.color
     });
     setCurrentStep('result');
   };
@@ -426,6 +423,13 @@ const LoveStyleTest = () => {
   };
 
   const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
+
+  // Get current style data based on current language
+  const currentStyleData = result ? loveStyles[result.styleKey as keyof typeof loveStyles] : null;
+  const currentTitle = currentStyleData?.title[language] || '';
+  const currentDescription = currentStyleData?.description[language] || '';
+  const currentTraits = currentStyleData?.traits[language] || [];
+  const currentAdvice = currentStyleData?.advice[language] || '';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 p-4 dark:from-purple-900 dark:via-pink-900 dark:to-red-900">
@@ -567,7 +571,7 @@ const LoveStyleTest = () => {
             <div className="bg-white rounded-lg p-8 shadow-2xl dark:bg-gray-800/95" ref={resultRef}>
               <div className="text-center mb-6">
                 <div className="text-6xl mb-4">{result.emoji}</div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-2 dark:text-gray-200">{result.title}</h1>
+                <h1 className="text-4xl font-bold text-gray-800 mb-2 dark:text-gray-200">{currentTitle}</h1>
                 <p className="text-xl text-gray-600 mb-4 dark:text-gray-200">{currentContent.resultTitle}</p>
               </div>
 
@@ -577,13 +581,13 @@ const LoveStyleTest = () => {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <p className="text-lg leading-relaxed text-white">
-                    {result.description}
+                    {currentDescription}
                   </p>
                   
                   <div>
                     <h3 className="text-xl font-semibold mb-3 text-white">{currentContent.traitsTitle}</h3>
                     <div className="flex flex-wrap gap-2">
-                      {result.traits.map((trait: string, index: number) => (
+                      {currentTraits.map((trait: string, index: number) => (
                         <span key={index} className="bg-white/30 text-white px-3 py-1 rounded-full text-sm border border-white/50">
                           {trait}
                         </span>
@@ -593,7 +597,7 @@ const LoveStyleTest = () => {
 
                   <div className="bg-white/20 p-4 rounded-lg border border-white/30">
                     <h3 className="text-xl font-semibold mb-2 text-white">{currentContent.adviceTitle}</h3>
-                    <p className="text-white">{result.advice}</p>
+                    <p className="text-white">{currentAdvice}</p>
                   </div>
                 </CardContent>
               </Card>
