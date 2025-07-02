@@ -5,6 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { ArrowRight, ChevronLeft, ChevronRight, RotateCcw, Share2, Download } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useToast } from '@/hooks/use-toast';
 
 const LoveStyleTest = () => {
   const [currentStep, setCurrentStep] = useState<'intro' | 'test' | 'result'>('intro');
@@ -14,6 +15,7 @@ const LoveStyleTest = () => {
   const [result, setResult] = useState<any>(null);
   const resultRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
+  const { toast } = useToast();
 
   const content = {
     ko: {
@@ -366,25 +368,47 @@ const LoveStyleTest = () => {
     if (!resultRef.current) return;
 
     try {
-      const html2canvas = (await import('html2canvas')).default;
+      // Dynamic import with proper error handling
+      const html2canvas = await import('html2canvas').then(module => module.default);
+      
       const canvas = await html2canvas(resultRef.current, {
         backgroundColor: '#ffffff',
         scale: 2,
         useCORS: true,
         allowTaint: true,
         width: resultRef.current.offsetWidth,
-        height: resultRef.current.offsetHeight
+        height: resultRef.current.offsetHeight,
+        logging: false,
+        onclone: (clonedDoc) => {
+          // Ensure dark mode styles are applied correctly
+          const clonedElement = clonedDoc.querySelector('[data-theme]');
+          if (clonedElement) {
+            clonedElement.setAttribute('data-theme', 'light');
+          }
+        }
       });
 
       const link = document.createElement('a');
+      const currentStyleData = result ? loveStyles[result.styleKey as keyof typeof loveStyles] : null;
+      const currentTitle = currentStyleData?.title[language] || '';
+      
       link.download = language === 'ko' 
-        ? `연애스타일_${result.title}_결과.png`
-        : `LoveStyle_${result.title.replace(/\s+/g, '_')}_Result.png`;
+        ? `연애스타일_${currentTitle}_결과.png`
+        : `LoveStyle_${currentTitle.replace(/\s+/g, '_')}_Result.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
+      
+      toast({
+        title: language === 'ko' ? '이미지 저장 완료' : 'Image Saved',
+        description: language === 'ko' ? '결과가 이미지로 저장되었습니다.' : 'Result has been saved as an image.',
+      });
     } catch (error) {
       console.error('이미지 저장 실패:', error);
-      alert(language === 'ko' ? '이미지 저장에 실패했습니다. 스크린샷을 이용해 주세요.' : 'Failed to save image. Please use screenshot.');
+      toast({
+        title: language === 'ko' ? '저장 실패' : 'Save Failed',
+        description: language === 'ko' ? '이미지 저장에 실패했습니다. 브라우저에서 스크린샷을 이용해 주세요.' : 'Failed to save image. Please use browser screenshot instead.',
+        variant: 'destructive',
+      });
     }
   };
 

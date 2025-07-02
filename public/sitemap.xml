@@ -3,68 +3,68 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simpletest.kr/</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/egen-teto-test</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/personality-test</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/compatibility-test</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/love-style-test</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/blog</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/about</loc>
-    <lastmod>2024-06-25</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/privacy</loc>
-    <lastmod>2024-06-25</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2025-06-27</lastmod>
+    <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/terms</loc>
-    <lastmod>2024-06-25</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2025-06-27</lastmod>
+    <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/disclaimer</loc>
-    <lastmod>2024-06-25</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2025-06-27</lastmod>
+    <changefreq>never</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://simpletest.kr/contact</loc>
-    <lastmod>2024-06-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-06-27</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 </urlset>
