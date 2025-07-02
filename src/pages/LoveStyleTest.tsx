@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,6 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { ArrowRight, ChevronLeft, ChevronRight, RotateCcw, Share2, Download } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useToast } from '@/hooks/use-toast';
 
 const LoveStyleTest = () => {
   const [currentStep, setCurrentStep] = useState<'intro' | 'test' | 'result'>('intro');
@@ -15,6 +15,7 @@ const LoveStyleTest = () => {
   const [result, setResult] = useState<any>(null);
   const resultRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
+  const { toast } = useToast();
 
   const content = {
     ko: {
@@ -323,11 +324,9 @@ const LoveStyleTest = () => {
     
     const selectedStyle = loveStyles[resultKey];
     setResult({
-      ...selectedStyle,
-      title: selectedStyle.title[language],
-      description: selectedStyle.description[language],
-      traits: selectedStyle.traits[language],
-      advice: selectedStyle.advice[language]
+      styleKey: resultKey, // Store the key to dynamically get content based on current language
+      emoji: selectedStyle.emoji,
+      color: selectedStyle.color
     });
     setCurrentStep('result');
   };
@@ -369,25 +368,47 @@ const LoveStyleTest = () => {
     if (!resultRef.current) return;
 
     try {
-      const html2canvas = (await import('html2canvas')).default;
+      // Dynamic import with proper error handling
+      const html2canvas = await import('html2canvas').then(module => module.default);
+      
       const canvas = await html2canvas(resultRef.current, {
         backgroundColor: '#ffffff',
         scale: 2,
         useCORS: true,
         allowTaint: true,
         width: resultRef.current.offsetWidth,
-        height: resultRef.current.offsetHeight
+        height: resultRef.current.offsetHeight,
+        logging: false,
+        onclone: (clonedDoc) => {
+          // Ensure dark mode styles are applied correctly
+          const clonedElement = clonedDoc.querySelector('[data-theme]');
+          if (clonedElement) {
+            clonedElement.setAttribute('data-theme', 'light');
+          }
+        }
       });
 
       const link = document.createElement('a');
+      const currentStyleData = result ? loveStyles[result.styleKey as keyof typeof loveStyles] : null;
+      const currentTitle = currentStyleData?.title[language] || '';
+      
       link.download = language === 'ko' 
-        ? `연애스타일_${result.title}_결과.png`
-        : `LoveStyle_${result.title.replace(/\s+/g, '_')}_Result.png`;
+        ? `연애스타일_${currentTitle}_결과.png`
+        : `LoveStyle_${currentTitle.replace(/\s+/g, '_')}_Result.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
+      
+      toast({
+        title: language === 'ko' ? '이미지 저장 완료' : 'Image Saved',
+        description: language === 'ko' ? '결과가 이미지로 저장되었습니다.' : 'Result has been saved as an image.',
+      });
     } catch (error) {
       console.error('이미지 저장 실패:', error);
-      alert(language === 'ko' ? '이미지 저장에 실패했습니다. 스크린샷을 이용해 주세요.' : 'Failed to save image. Please use screenshot.');
+      toast({
+        title: language === 'ko' ? '저장 실패' : 'Save Failed',
+        description: language === 'ko' ? '이미지 저장에 실패했습니다. 브라우저에서 스크린샷을 이용해 주세요.' : 'Failed to save image. Please use browser screenshot instead.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -426,6 +447,13 @@ const LoveStyleTest = () => {
   };
 
   const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
+
+  // Get current style data based on current language
+  const currentStyleData = result ? loveStyles[result.styleKey as keyof typeof loveStyles] : null;
+  const currentTitle = currentStyleData?.title[language] || '';
+  const currentDescription = currentStyleData?.description[language] || '';
+  const currentTraits = currentStyleData?.traits[language] || [];
+  const currentAdvice = currentStyleData?.advice[language] || '';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 p-4 dark:from-purple-900 dark:via-pink-900 dark:to-red-900">
@@ -567,7 +595,7 @@ const LoveStyleTest = () => {
             <div className="bg-white rounded-lg p-8 shadow-2xl dark:bg-gray-800/95" ref={resultRef}>
               <div className="text-center mb-6">
                 <div className="text-6xl mb-4">{result.emoji}</div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-2 dark:text-gray-200">{result.title}</h1>
+                <h1 className="text-4xl font-bold text-gray-800 mb-2 dark:text-gray-200">{currentTitle}</h1>
                 <p className="text-xl text-gray-600 mb-4 dark:text-gray-200">{currentContent.resultTitle}</p>
               </div>
 
@@ -577,13 +605,13 @@ const LoveStyleTest = () => {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <p className="text-lg leading-relaxed text-white">
-                    {result.description}
+                    {currentDescription}
                   </p>
                   
                   <div>
                     <h3 className="text-xl font-semibold mb-3 text-white">{currentContent.traitsTitle}</h3>
                     <div className="flex flex-wrap gap-2">
-                      {result.traits.map((trait: string, index: number) => (
+                      {currentTraits.map((trait: string, index: number) => (
                         <span key={index} className="bg-white/30 text-white px-3 py-1 rounded-full text-sm border border-white/50">
                           {trait}
                         </span>
@@ -593,7 +621,7 @@ const LoveStyleTest = () => {
 
                   <div className="bg-white/20 p-4 rounded-lg border border-white/30">
                     <h3 className="text-xl font-semibold mb-2 text-white">{currentContent.adviceTitle}</h3>
-                    <p className="text-white">{result.advice}</p>
+                    <p className="text-white">{currentAdvice}</p>
                   </div>
                 </CardContent>
               </Card>
