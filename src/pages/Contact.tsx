@@ -95,7 +95,7 @@ const Contact = () => {
         <meta property="og:title" content={`${currentContent.title} - SimpleTest.kr`} />
         <meta property="og:description" content={currentContent.subtitle} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://simpletest.kr/contact" />
+        <meta property="og:url" content="https://www.simpletest.kr/contact" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${currentContent.title} - SimpleTest.kr`} />
         <meta name="twitter:description" content={currentContent.subtitle} />

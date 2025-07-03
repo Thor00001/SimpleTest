@@ -90,7 +90,7 @@ const Index = () => {
           'Discover yourself better with fun and accurate psychology tests. Free personality analysis tests including MBTI, Egenteto, and love style tests.'
         } />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://simpletest.kr/" />
+        <meta property="og:url" content="https://www.simpletest.kr/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={language === 'ko' ? 'SimpleTest.kr - 재미있고 정확한 심리 테스트' : 'SimpleTest.kr - Fun and Accurate Psychology Tests'} />
         <meta name="twitter:description" content={language === 'ko' ? 
