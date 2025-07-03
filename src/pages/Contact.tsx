@@ -1,8 +1,8 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, MessageSquare } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
+import AdBanner from '@/components/AdBanner';
 
 const Contact = () => {
   const { language } = useLanguage();
@@ -111,6 +111,15 @@ const Contact = () => {
           </p>
         </div>
 
+        {/* 상단 광고 */}
+        <div className="mb-8">
+          <AdBanner 
+            adSlot="5566778899" 
+            adFormat="horizontal"
+            className="bg-white/50 rounded-lg p-4 dark:bg-gray-800/50"
+          />
+        </div>
+
         <div className="space-y-8">
           <Card className="shadow-xl dark:bg-gray-800 dark:border-gray-700">
             <CardHeader>
@@ -130,6 +139,15 @@ const Contact = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* 중간 광고 */}
+          <div className="my-8">
+            <AdBanner 
+              adSlot="6677889900" 
+              adFormat="rectangle"
+              className="bg-white/50 rounded-lg p-4 dark:bg-gray-800/50"
+            />
+          </div>
 
           <Card className="shadow-xl dark:bg-gray-800 dark:border-gray-700">
             <CardHeader>

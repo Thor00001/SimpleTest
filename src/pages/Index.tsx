@@ -1,10 +1,11 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Star, Users, Clock, Heart, Brain, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
+import AdBanner from '@/components/AdBanner';
+import AdDisplay from '@/components/AdDisplay';
 
 const Index = () => {
   const { t, language } = useLanguage();
@@ -150,6 +151,17 @@ const Index = () => {
         </div>
       </section>
 
+      {/* 상단 광고 배너 */}
+      <section className="py-4 px-4 bg-white/5 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto">
+          <AdBanner 
+            adSlot="1234567890" 
+            adFormat="horizontal"
+            className="mb-4"
+          />
+        </div>
+      </section>
+
       {/* Popular Tests Section */}
       <section className="py-16 px-4 bg-white/10 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
@@ -184,6 +196,16 @@ const Index = () => {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 중간 광고 배너 */}
+      <section className="py-4 px-4">
+        <div className="max-w-4xl mx-auto">
+          <AdDisplay 
+            adSlot="0987654321"
+            className="my-8"
+          />
         </div>
       </section>
 
@@ -265,6 +287,17 @@ const Index = () => {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* 하단 광고 배너 */}
+      <section className="py-4 px-4 bg-white/5 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto">
+          <AdBanner 
+            adSlot="1122334455" 
+            adFormat="rectangle"
+            className="mb-4"
+          />
         </div>
       </section>
     </div>
