@@ -464,7 +464,7 @@ const LoveStyleTest = () => {
         <meta property="og:title" content={language === 'ko' ? '연애 스타일 테스트 - 나만의 사랑 방식은?' : 'Love Style Test - What\'s My Love Style?'} />
         <meta property="og:description" content={language === 'ko' ? '8가지 질문으로 알아보는 나만의 연애 스타일! 당신만의 독특한 사랑 방식을 발견해보세요.' : 'Discover your unique love style through 8 questions! Find your own unique way of loving.'} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://simpletest.kr/love-style-test" />
+        <meta property="og:url" content="https://www.simpletest.kr/love-style-test" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={language === 'ko' ? '연애 스타일 테스트 - 나만의 사랑 방식은?' : 'Love Style Test - What\'s My Love Style?'} />
         <meta name="twitter:description" content={language === 'ko' ? '8가지 질문으로 알아보는 나만의 연애 스타일! 당신만의 독특한 사랑 방식을 발견해보세요.' : 'Discover your unique love style through 8 questions! Find your own unique way of loving.'} />
