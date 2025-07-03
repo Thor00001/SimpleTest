@@ -12,4 +12,4 @@ Allow: /
 
 User-agent: *
 Allow: /
-Sitemap: https://simpletest.kr/sitemap.xml
+Sitemap: https://www.simpletest.kr/sitemap.xml
