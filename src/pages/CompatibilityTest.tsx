@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
+import AdDisplay from '@/components/AdDisplay';
 
 const CompatibilityTest = () => {
   const [myMBTI, setMyMBTI] = useState<string>('');
@@ -134,7 +135,7 @@ const CompatibilityTest = () => {
       myType: myMBTI,
       partnerType: partnerMBTI,
       score: compatibility.score,
-      compatibilityData: compatibility // Store the full compatibility data instead of just the current language description
+      compatibilityData: compatibility
     });
   };
 
@@ -227,7 +228,6 @@ const CompatibilityTest = () => {
     setResult(null);
   };
 
-  // Get current description and advice based on current language
   const currentDescription = result?.compatibilityData?.description?.[language] || '';
   const currentAdvice = result ? getAdvice(result.score) : '';
 
@@ -248,6 +248,12 @@ const CompatibilityTest = () => {
       <div className="max-w-4xl mx-auto">
         {!result ? (
           <div className="text-center animate-fade-in">
+            {/* 상단 광고 */}
+            <AdDisplay 
+              adSlot="6789012345"
+              className="mb-8"
+            />
+
             <div className="mb-8 pt-12">
               <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">
                 {currentContent.title}
@@ -301,6 +307,12 @@ const CompatibilityTest = () => {
                   </div>
                 </div>
 
+                {/* 중간 광고 */}
+                <AdDisplay 
+                  adSlot="7890123456"
+                  className="my-6"
+                />
+
                 <Button 
                   onClick={calculateCompatibility}
                   disabled={!myMBTI || !partnerMBTI}
@@ -328,6 +340,12 @@ const CompatibilityTest = () => {
           </div>
         ) : (
           <div className="animate-fade-in space-y-8">
+            {/* 결과 상단 광고 */}
+            <AdDisplay 
+              adSlot="8901234567"
+              className="mb-8"
+            />
+
             <div className="bg-white rounded-lg p-8 shadow-2xl dark:bg-gray-800/95" ref={resultRef}>
               <div className="text-center mb-8">
                 <div className="text-8xl mb-4">💕</div>
@@ -356,6 +374,12 @@ const CompatibilityTest = () => {
                 </CardContent>
               </Card>
             </div>
+
+            {/* 결과 중간 광고 */}
+            <AdDisplay 
+              adSlot="9012345678"
+              className="my-8"
+            />
 
             <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 dark:bg-gray-800/95">
               <CardContent className="pt-6">
