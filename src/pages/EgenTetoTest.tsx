@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import EgenTetoQuestion from '@/components/EgenTetoQuestion';
 import EgenTetoResult from '@/components/EgenTetoResult';
 import { useLanguage } from '@/contexts/LanguageContext';
+import AdDisplay from '@/components/AdDisplay';
 
 const EgenTetoTest = () => {
   const [currentStep, setCurrentStep] = useState<'intro' | 'gender' | 'test' | 'result'>('intro');
@@ -113,6 +114,11 @@ const EgenTetoTest = () => {
       <div className="max-w-4xl mx-auto">
         {currentStep === 'intro' && (
           <div className="text-center animate-fade-in">
+            <AdDisplay 
+              adSlot="0123456789"
+              className="mb-8"
+            />
+
             <div className="mb-8 pt-12">
               <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">
                 {currentContent.title}
@@ -148,6 +154,12 @@ const EgenTetoTest = () => {
                     <p className="text-sm text-blue-600 dark:text-blue-400">{currentContent.tetoDescription}</p>
                   </div>
                 </div>
+
+                <AdDisplay 
+                  adSlot="1234567890"
+                  className="my-6"
+                />
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 mt-6 dark:text-gray-400">
                   <div className="flex flex-col items-center space-y-1">
                     <span>⏱️</span>
@@ -182,6 +194,11 @@ const EgenTetoTest = () => {
 
         {currentStep === 'gender' && (
           <div className="text-center animate-fade-in">
+            <AdDisplay 
+              adSlot="2345678901"
+              className="mb-8"
+            />
+
             <div className="mb-8 pt-12">
               <h2 className="text-4xl font-bold text-white mb-4">
                 {currentContent.genderTitle}
@@ -227,12 +244,29 @@ const EgenTetoTest = () => {
         )}
 
         {currentStep === 'test' && (
-          <EgenTetoQuestion onComplete={handleTestComplete} gender={selectedGender} />
+          <div>
+            <AdDisplay 
+              adSlot="3456789012"
+              className="mb-4"
+            />
+            <EgenTetoQuestion onComplete={handleTestComplete} gender={selectedGender} />
+          </div>
         )}
 
         {currentStep === 'result' && (
           <div className="animate-fade-in">
+            <AdDisplay 
+              adSlot="4567890123"
+              className="mb-8"
+            />
+            
             <EgenTetoResult result={result} gender={selectedGender} onRestart={handleRestart} />
+            
+            <AdDisplay 
+              adSlot="5678901234"
+              className="mt-8 mb-8"
+            />
+            
             <div className="text-center mt-8">
               <Button 
                 onClick={handleRestart}

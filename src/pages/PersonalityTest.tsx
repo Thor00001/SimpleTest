@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,6 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 import TestQuestion from '@/components/TestQuestion';
 import TestResult from '@/components/TestResult';
+import AdDisplay from '@/components/AdDisplay';
 
 const PersonalityTest = () => {
   const { language } = useLanguage();
@@ -114,6 +114,12 @@ const PersonalityTest = () => {
       <div className="max-w-4xl mx-auto">
         {currentStep === 'intro' && (
           <div className="text-center animate-fade-in">
+            {/* 상단 광고 */}
+            <AdDisplay 
+              adSlot="1234567890"
+              className="mb-8"
+            />
+
             <div className="mb-8 pt-12">
               <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">
                 {t.title}
@@ -194,6 +200,12 @@ const PersonalityTest = () => {
               </CardContent>
             </Card>
 
+            {/* 중간 광고 */}
+            <AdDisplay 
+              adSlot="2345678901"
+              className="mb-8"
+            />
+
             <Button 
               onClick={handleStartTest}
               size="lg"
@@ -206,12 +218,32 @@ const PersonalityTest = () => {
         )}
 
         {currentStep === 'test' && (
-          <TestQuestion onComplete={handleTestComplete} />
+          <div>
+            {/* 테스트 중간 광고 */}
+            <AdDisplay 
+              adSlot="3456789012"
+              className="mb-4"
+            />
+            <TestQuestion onComplete={handleTestComplete} />
+          </div>
         )}
 
         {currentStep === 'result' && (
           <div className="animate-fade-in">
+            {/* 결과 상단 광고 */}
+            <AdDisplay 
+              adSlot="4567890123"
+              className="mb-8"
+            />
+            
             <TestResult result={result} onRestart={handleRestart} />
+            
+            {/* 결과 하단 광고 */}
+            <AdDisplay 
+              adSlot="5678901234"
+              className="mt-8 mb-8"
+            />
+            
             <div className="text-center mt-8">
               <Button 
                 onClick={handleRestart}
