@@ -241,6 +241,7 @@ const CompatibilityTest = () => {
         <meta property="og:description" content={language === 'ko' ? '나와 상대방의 MBTI로 연애 궁합도를 확인해보세요! 과학적 근거를 바탕으로 한 정확한 분석을 제공합니다.' : 'Check your romantic compatibility with your partner\'s MBTI! We provide accurate analysis based on scientific evidence.'} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.simpletest.kr/compatibility-test" />
+        <link rel="canonical" href="https://www.simpletest.kr/compatibility-test" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={language === 'ko' ? 'MBTI 궁합 테스트 - 우리는 얼마나 잘 맞을까?' : 'MBTI Compatibility Test - How Well Do We Match?'} />
         <meta name="twitter:description" content={language === 'ko' ? '나와 상대방의 MBTI로 연애 궁합도를 확인해보세요! 과학적 근거를 바탕으로 한 정확한 분석을 제공합니다.' : 'Check your romantic compatibility with your partner\'s MBTI! We provide accurate analysis based on scientific evidence.'} />

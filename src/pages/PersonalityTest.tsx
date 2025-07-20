@@ -106,6 +106,7 @@ const PersonalityTest = () => {
         <meta property="og:description" content={t.ogDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.simpletest.kr/personality-test" />
+        <link rel="canonical" href="https://www.simpletest.kr/personality-test" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={t.ogTitle} />
         <meta name="twitter:description" content={t.ogDescription} />
