@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Brain, Users, Heart, Target, Sparkles, BarChart3, Clock, Shield } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
   const { language } = useLanguage();
@@ -182,6 +183,18 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900">
+      <Helmet>
+        <title>{language === 'ko' ? '서비스 소개 - SimpleTest.kr' : 'Service Introduction - SimpleTest.kr'}</title>
+        <meta name="description" content={language === 'ko' ? 'SimpleTest.kr은 과학적 근거와 재미를 동시에 제공하는 심리 테스트 플랫폼입니다. 다양한 테스트를 통해 자신을 더 깊이 이해하고, 타인과의 관계를 개선해보세요.' : 'SimpleTest.kr is a psychological testing platform that provides both scientific foundation and entertainment. Understand yourself more deeply through various tests.'} />
+        <meta property="og:title" content={language === 'ko' ? '서비스 소개 - SimpleTest.kr' : 'Service Introduction - SimpleTest.kr'} />
+        <meta property="og:description" content={language === 'ko' ? 'SimpleTest.kr은 과학적 근거와 재미를 동시에 제공하는 심리 테스트 플랫폼입니다.' : 'SimpleTest.kr is a psychological testing platform that provides both scientific foundation and entertainment.'} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.simpletest.kr/about" />
+        <link rel="canonical" href="https://www.simpletest.kr/about" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={language === 'ko' ? '서비스 소개 - SimpleTest.kr' : 'Service Introduction - SimpleTest.kr'} />
+        <meta name="twitter:description" content={language === 'ko' ? 'SimpleTest.kr은 과학적 근거와 재미를 동시에 제공하는 심리 테스트 플랫폼입니다.' : 'SimpleTest.kr is a psychological testing platform that provides both scientific foundation and entertainment.'} />
+      </Helmet>
       {/* Hero Section */}
       <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">

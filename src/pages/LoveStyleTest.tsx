@@ -106,6 +106,7 @@ const LoveStyleTest = () => {
         <meta property="og:description" content={currentContent.ogDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.simpletest.kr/love-style-test" />
+        <link rel="canonical" href="https://www.simpletest.kr/love-style-test" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={currentContent.ogTitle} />
         <meta name="twitter:description" content={currentContent.ogDescription} />
@@ -237,7 +238,7 @@ const LoveStyleTest = () => {
               className="mb-8"
             />
             
-            <LoveStyleResult result={result} onRestart={handleRestart} />
+            <LoveStyleResult result={result} answers={answers} onRestart={handleRestart} />
             
             {/* 결과 하단 광고 */}
             <AdDisplay 

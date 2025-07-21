@@ -107,6 +107,7 @@ const EgenTetoTest = () => {
         <meta property="og:description" content={language === 'ko' ? 'SNS에서 화제인 에겐남/테토남 테스트! 당신의 진짜 매력 포인트를 발견해보세요.' : 'The trending Egen/Teto test on social media! Discover your true charm points.'} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.simpletest.kr/egen-teto-test" />
+        <link rel="canonical" href="https://www.simpletest.kr/egen-teto-test" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={language === 'ko' ? '에겐남 vs 테토남 테스트 - 나는 어떤 타입일까?' : 'Egen vs Teto Test - What\'s My Type?'} />
         <meta name="twitter:description" content={language === 'ko' ? 'SNS에서 화제인 에겐남/테토남 테스트! 당신의 진짜 매력 포인트를 발견해보세요.' : 'The trending Egen/Teto test on social media! Discover your true charm points.'} />
