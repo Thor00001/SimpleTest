@@ -21,7 +21,7 @@ const AdDisplay = ({ adSlot, className = '', style }: AdDisplayProps) => {
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" // 실제 사용시 여기에 본인의 AdSense 클라이언트 ID 입력
+        data-ad-client="ca-pub-2129239982805567" // 실제 사용시 여기에 본인의 AdSense 클라이언트 ID 입력
         data-ad-slot={adSlot}
         data-ad-format="auto"
         data-full-width-responsive="true"
