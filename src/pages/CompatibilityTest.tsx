@@ -308,11 +308,6 @@ const CompatibilityTest = () => {
                   </div>
                 </div>
 
-                {/* 중간 광고 */}
-                <AdDisplay 
-                  adSlot="7890123456"
-                  className="my-6"
-                />
 
                 <Button 
                   onClick={calculateCompatibility}

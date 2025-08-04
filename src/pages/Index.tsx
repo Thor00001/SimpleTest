@@ -201,12 +201,6 @@ const Index = () => {
 
       {/* 중간 광고 배너 */}
       <section className="py-4 px-4">
-        <div className="max-w-4xl mx-auto">
-          <AdDisplay 
-            adSlot="0987654321"
-            className="my-8"
-          />
-        </div>
       </section>
 
       {/* Features Section */}

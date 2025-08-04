@@ -181,11 +181,6 @@ const LoveStyleTest = () => {
                   </div>
                 </div>
 
-                {/* 중간 광고 */}
-                <AdDisplay 
-                  adSlot="7890123456"
-                  className="my-6"
-                />
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-500 mt-6 dark:text-gray-400">
                   <div className="flex flex-col items-center space-y-1">
